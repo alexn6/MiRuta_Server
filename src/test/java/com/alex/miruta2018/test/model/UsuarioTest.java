@@ -5,7 +5,6 @@
  */
 package com.alex.miruta2018.test.model;
 
-import com.alex.miruta2018.interfaces.RepositorioUsuario;
 import com.alex.miruta2018.model.Usuario;
 import com.alex.miruta2018.test.config.ConfigTest;
 import com.alex.miruta2018.test.model.UsuarioTest.TestController;
@@ -19,6 +18,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import com.alex.miruta2018.interfaces.RepositorioUsuarioCrud;
 
 /**
  *
@@ -57,7 +57,7 @@ public class UsuarioTest {
     @Component
     static class TestController{
         @Autowired
-        private RepositorioUsuario repo;
+        private RepositorioUsuarioCrud repo;
 
         /**
          * @return
