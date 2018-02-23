@@ -8,6 +8,7 @@ com/alex/miruta2018/setting/JacksonConfig.class
 com/alex/miruta2018/model/Usuario.class
 com/alex/miruta2018/model/Esquina.class
 com/alex/miruta2018/security/JWTAuthenticationFilter.class
+com/alex/miruta2018/services/UsuarioService.class
 com/alex/miruta2018/model/Parada.class
 com/alex/miruta2018/security/WebSecurity.class
 com/alex/miruta2018/model/Comun.class
@@ -23,6 +24,7 @@ com/alex/miruta2018/interfaces/RepositorioPtoRecorrido.class
 com/alex/miruta2018/interfaces/RepositorioRecorrido.class
 com/alex/miruta2018/interfaces/RepositorioUsuarioJpa.class
 com/alex/miruta2018/interfaces/RepositorioPtoInteres.class
+com/alex/miruta2018/business/UsuarioBusiness.class
 com/alex/miruta2018/controller/ControllerDB.class
 com/alex/miruta2018/model/Empresa.class
 com/alex/miruta2018/interfaces/RepositorioUsuarioCrud.class

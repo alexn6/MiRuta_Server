@@ -54,5 +54,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             .setExpiration(new Date(System.currentTimeMillis() + TOKEN_EXPIRATION_TIME))
             .signWith(SignatureAlgorithm.HS512, SUPER_SECRET_KEY).compact();
             response.addHeader(HEADER_AUTHORIZACION_KEY, TOKEN_BEARER_PREFIX + " " + token);
+            response.getWriter().print(TOKEN_BEARER_PREFIX + " " + token);
+//            response.addHeader("Access-Control-Allow-Methods: GET, POST, OPTIONS", "Access-Control-Allow-Headers: Origin, X-Requested-With,Content-Type, Accept, Authorization, X-Custom-header");
+//            response.addHeader("Access-Control-Expose-Headers: X-Custom-header", "X-Custom-header: $some data");
     }
 }

@@ -1,5 +1,6 @@
 /home/alextc6/NetBeansProjects/MiRuta2018/src/main/java/com/alex/miruta2018/model/UnidadTransporte.java
 /home/alextc6/NetBeansProjects/MiRuta2018/src/main/java/com/alex/miruta2018/setting/JacksonConfig.java
+/home/alextc6/NetBeansProjects/MiRuta2018/src/main/java/com/alex/miruta2018/services/UsuarioService.java
 /home/alextc6/NetBeansProjects/MiRuta2018/src/main/java/com/alex/miruta2018/interfaces/RepositorioRecorrido.java
 /home/alextc6/NetBeansProjects/MiRuta2018/src/main/java/com/alex/miruta2018/interfaces/RepositorioComun.java
 /home/alextc6/NetBeansProjects/MiRuta2018/src/main/java/com/alex/miruta2018/controller/UsuarioController.java
@@ -12,6 +13,7 @@
 /home/alextc6/NetBeansProjects/MiRuta2018/src/main/java/com/alex/miruta2018/interfaces/RepositorioParada.java
 /home/alextc6/NetBeansProjects/MiRuta2018/src/main/java/com/alex/miruta2018/interfaces/RepositorioEsquina.java
 /home/alextc6/NetBeansProjects/MiRuta2018/src/main/java/com/alex/miruta2018/model/Parada.java
+/home/alextc6/NetBeansProjects/MiRuta2018/src/main/java/com/alex/miruta2018/business/UsuarioBusiness.java
 /home/alextc6/NetBeansProjects/MiRuta2018/src/main/java/com/alex/miruta2018/interfaces/RepositorioPtoInteres.java
 /home/alextc6/NetBeansProjects/MiRuta2018/src/main/java/com/alex/miruta2018/model/PuntoRecorrido.java
 /home/alextc6/NetBeansProjects/MiRuta2018/src/main/java/com/alex/miruta2018/model/Comun.java
