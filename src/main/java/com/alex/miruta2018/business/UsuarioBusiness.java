@@ -34,7 +34,7 @@ public class UsuarioBusiness {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     
-    @RequestMapping(value = "/allUsers", method = GET)
+    @RequestMapping(value = "/users", method = GET)
     public ResponseEntity<Usuario> allUsers() {
         return new ResponseEntity(serviceUsuario.getAll(), HttpStatus.OK);
     }
