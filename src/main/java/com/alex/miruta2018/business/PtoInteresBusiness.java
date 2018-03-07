@@ -5,17 +5,15 @@
  */
 package com.alex.miruta2018.business;
 
-import com.alex.miruta2018.interfaces.RepositorioUsuarioCrud;
-import com.alex.miruta2018.model.Usuario;
-import com.alex.miruta2018.services.UsuarioService;
-import java.util.List;
+import com.alex.miruta2018.model.PuntoInteres;
+import com.alex.miruta2018.model.support.PuntoInteresCreate;
+import com.alex.miruta2018.model.support.PuntoInteresUpdate;
+import com.alex.miruta2018.services.PtoInteresService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,35 +24,35 @@ import org.springframework.web.bind.annotation.RestController;
  * @author alextc6
  */
 @RestController
-@RequestMapping("/miruta/users")
-public class UsuarioBusiness {
+@RequestMapping("/miruta/ptoInteres")
+public class PtoInteresBusiness {
     
     @Autowired
-    private UsuarioService serviceUsuario;
-
+    private PtoInteresService servicePtoInteres;
+    
     
     @RequestMapping(value = "/create", method = POST)
-    public ResponseEntity<Usuario> saveUser(@RequestBody Usuario usuario) {
-        return new ResponseEntity(serviceUsuario.create(usuario), HttpStatus.OK);
+    public ResponseEntity<PuntoInteres> savePointInteres(@RequestBody PuntoInteresCreate punto) {
+        return new ResponseEntity(servicePtoInteres.create(punto), HttpStatus.OK);
     }
     
     @RequestMapping(value = "", method = GET)
-    public ResponseEntity<Usuario> userById(@RequestParam(value = "id", required=false) Long id) {
+    public ResponseEntity<PuntoInteres> pointInteresById(@RequestParam(value = "id", required=false) Long id) {
         if(id == null){
-            return new ResponseEntity(serviceUsuario.getAll(), HttpStatus.OK);
+            return new ResponseEntity(servicePtoInteres.getAll(), HttpStatus.OK);
         }
-        return new ResponseEntity(serviceUsuario.getById(id), HttpStatus.OK);
+        return new ResponseEntity(servicePtoInteres.getById(id), HttpStatus.OK);
     }
     
-    @RequestMapping(value = "/delete", method = POST)
-    public ResponseEntity deleteUser(@RequestParam(value = "id") long id) {
+    @RequestMapping(value = "/detete", method = POST)
+    public ResponseEntity deletePointInteres(@RequestParam(value = "id") long id) {
         // ver como informar q se elimino correctamente al usuario
-        serviceUsuario.delete(id);
+        servicePtoInteres.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
     
     @RequestMapping(value = "/update", method = POST)
-    public ResponseEntity<Usuario> updateUser(@RequestBody Usuario usuario) {
-        return new ResponseEntity(serviceUsuario.update(usuario), HttpStatus.OK);
+    public ResponseEntity<PuntoInteres> updatePtoInteres(@RequestBody PuntoInteresUpdate punto) {
+        return new ResponseEntity(servicePtoInteres.update(punto), HttpStatus.OK);
     }
 }

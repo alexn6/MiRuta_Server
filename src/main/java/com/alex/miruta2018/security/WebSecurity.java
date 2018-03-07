@@ -53,6 +53,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         .cors().and()
 	.csrf().disable()
 	.authorizeRequests().antMatchers(HttpMethod.GET, "/miruta/users").permitAll()
+            .antMatchers(HttpMethod.GET, "/miruta/ptoInteres").permitAll()
 	.anyRequest().authenticated().and()
             .addFilter(new JWTAuthenticationFilter(authenticationManager()))
             .addFilter(new JWTAuthorizationFilter(authenticationManager()));

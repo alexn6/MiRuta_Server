@@ -5,6 +5,7 @@
  */
 package com.alex.miruta2018.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.List;
@@ -34,8 +35,11 @@ public class UnidadTransporte implements Serializable{
     @JoinColumn(name = "Recorrido_ID", nullable = true)
     private Recorrido recorrido;
     
-    @OneToOne(fetch = FetchType.LAZY)
+    // la carga perezosa genera un problema a l hoar de devolver el json, lo detecta como si no hubieran datos en ese campo
+    @OneToOne(fetch = FetchType.EAGER)
+//    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Empresa_ID", nullable = false)
+//    @JsonIgnore
     private Empresa empresa;
     
     private static final long serialVersionUID = 1L;
@@ -49,18 +53,15 @@ public class UnidadTransporte implements Serializable{
     @Column(name = "nombre")
     private String nombre;
     
-//    @Column(name = "horaInicio")
     @Column(name = "horainicio")
     private LocalTime horaInicio;
     
-//    @Column(name = "horaFin")
     @Column(name = "horafin")
     private LocalTime horaFin;
     
     @Column(name = "frecuencia")
     private String frecuencia;
     
-//    @Column(name = "precioBoleto")
     @Column(name = "precioboleto")
     private String precioBoleto;
     

@@ -22,12 +22,12 @@ import org.postgis.Point;
 @Table(name = "comun")
 public class Comun extends PuntoRecorrido implements Serializable{
     
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @GeneratedValue
-    private Long id;
+//    private static final long serialVersionUID = 1L;
+//    @Id
+//    @Basic(optional = false)
+//    @NotNull
+//    @GeneratedValue
+//    private Long id;
     
     public Comun(){
         super();
@@ -38,7 +38,7 @@ public class Comun extends PuntoRecorrido implements Serializable{
     }
 
     public Long getId() {
-        return id;
+        return super.getId();
     }
     
     public String getDescripcion() {

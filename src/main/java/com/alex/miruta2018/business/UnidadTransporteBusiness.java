@@ -5,17 +5,15 @@
  */
 package com.alex.miruta2018.business;
 
-import com.alex.miruta2018.interfaces.RepositorioUsuarioCrud;
-import com.alex.miruta2018.model.Usuario;
-import com.alex.miruta2018.services.UsuarioService;
-import java.util.List;
+import com.alex.miruta2018.model.UnidadTransporte;
+import com.alex.miruta2018.model.support.UnidadTransporteCreate;
+import com.alex.miruta2018.model.support.UnidadTransporteUpdate;
+import com.alex.miruta2018.services.UnidadTransporteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,35 +24,36 @@ import org.springframework.web.bind.annotation.RestController;
  * @author alextc6
  */
 @RestController
-@RequestMapping("/miruta/users")
-public class UsuarioBusiness {
+@RequestMapping("/miruta/unitransportes")
+public class UnidadTransporteBusiness {
     
     @Autowired
-    private UsuarioService serviceUsuario;
-
+    private UnidadTransporteService serviceUniTransporte;
     
+
     @RequestMapping(value = "/create", method = POST)
-    public ResponseEntity<Usuario> saveUser(@RequestBody Usuario usuario) {
-        return new ResponseEntity(serviceUsuario.create(usuario), HttpStatus.OK);
+    public ResponseEntity<UnidadTransporte> saveUniTransporte(@RequestBody UnidadTransporteCreate unidad) {
+        return new ResponseEntity(serviceUniTransporte.create(unidad), HttpStatus.OK);
     }
     
     @RequestMapping(value = "", method = GET)
-    public ResponseEntity<Usuario> userById(@RequestParam(value = "id", required=false) Long id) {
+    public ResponseEntity<UnidadTransporte> uniTransporteById(@RequestParam(value = "id", required = false) Long id) {
         if(id == null){
-            return new ResponseEntity(serviceUsuario.getAll(), HttpStatus.OK);
+            return new ResponseEntity(serviceUniTransporte.getAll(), HttpStatus.OK);
         }
-        return new ResponseEntity(serviceUsuario.getById(id), HttpStatus.OK);
+        return new ResponseEntity(serviceUniTransporte.getById(id), HttpStatus.OK);
     }
     
     @RequestMapping(value = "/delete", method = POST)
-    public ResponseEntity deleteUser(@RequestParam(value = "id") long id) {
+    public ResponseEntity deleteUniTransporte(@RequestParam(value = "id") long id) {
         // ver como informar q se elimino correctamente al usuario
-        serviceUsuario.delete(id);
+        serviceUniTransporte.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
     
     @RequestMapping(value = "/update", method = POST)
-    public ResponseEntity<Usuario> updateUser(@RequestBody Usuario usuario) {
-        return new ResponseEntity(serviceUsuario.update(usuario), HttpStatus.OK);
+    public ResponseEntity<UnidadTransporte> updateUniTransporte(@RequestBody UnidadTransporteUpdate unidad) {
+        return new ResponseEntity(serviceUniTransporte.update(unidad), HttpStatus.OK);
     }
+    
 }

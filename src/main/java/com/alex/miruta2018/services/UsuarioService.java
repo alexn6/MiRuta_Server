@@ -10,6 +10,7 @@ import com.alex.miruta2018.model.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,6 +22,9 @@ public class UsuarioService {
     
     @Autowired
     private RepositorioUsuarioCrud repoCrudUsuario;
+    
+    @Autowired
+    private BCryptPasswordEncoder encriptadorPassword;
     
     public Usuario getById(Long id){
         return repoCrudUsuario.findOne(id);
@@ -34,6 +38,12 @@ public class UsuarioService {
     }
     
     public Usuario create(Usuario usuario){
+        usuario.setPass(encriptadorPassword.encode(usuario.getPass()));
+        return repoCrudUsuario.save(usuario);
+    }
+    
+    public Usuario update(Usuario usuario){
+        usuario.setPass(encriptadorPassword.encode(usuario.getPass()));
         return repoCrudUsuario.save(usuario);
     }
     

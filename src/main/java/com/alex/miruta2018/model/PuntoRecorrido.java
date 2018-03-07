@@ -5,6 +5,10 @@
  */
 package com.alex.miruta2018.model;
 
+import com.alex.miruta2018.support.JsonToPointDeserializer;
+import com.alex.miruta2018.support.PointToJsonSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -38,6 +42,8 @@ public class PuntoRecorrido implements Serializable{
     private Long id;
     
     @Column(name = "coordenada")
+    @JsonSerialize(using = PointToJsonSerializer.class)
+    @JsonDeserialize(using = JsonToPointDeserializer.class)
     private Point coordenada;
     
     @Column(name = "descripcion")

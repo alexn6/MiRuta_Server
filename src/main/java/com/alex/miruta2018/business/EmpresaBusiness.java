@@ -5,17 +5,13 @@
  */
 package com.alex.miruta2018.business;
 
-import com.alex.miruta2018.interfaces.RepositorioUsuarioCrud;
-import com.alex.miruta2018.model.Usuario;
-import com.alex.miruta2018.services.UsuarioService;
-import java.util.List;
+import com.alex.miruta2018.model.Empresa;
+import com.alex.miruta2018.services.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,35 +22,35 @@ import org.springframework.web.bind.annotation.RestController;
  * @author alextc6
  */
 @RestController
-@RequestMapping("/miruta/users")
-public class UsuarioBusiness {
+@RequestMapping("/miruta/company")
+public class EmpresaBusiness {
     
     @Autowired
-    private UsuarioService serviceUsuario;
+    private EmpresaService serviceEmpresa;
 
     
     @RequestMapping(value = "/create", method = POST)
-    public ResponseEntity<Usuario> saveUser(@RequestBody Usuario usuario) {
-        return new ResponseEntity(serviceUsuario.create(usuario), HttpStatus.OK);
+    public ResponseEntity<Empresa> saveCompany(@RequestBody Empresa empresa) {
+        return new ResponseEntity(serviceEmpresa.create(empresa), HttpStatus.OK);
     }
     
     @RequestMapping(value = "", method = GET)
-    public ResponseEntity<Usuario> userById(@RequestParam(value = "id", required=false) Long id) {
+    public ResponseEntity<Empresa> companyById(@RequestParam(value = "id", required=false) Long id) {
         if(id == null){
-            return new ResponseEntity(serviceUsuario.getAll(), HttpStatus.OK);
+            return new ResponseEntity(serviceEmpresa.getAll(), HttpStatus.OK);
         }
-        return new ResponseEntity(serviceUsuario.getById(id), HttpStatus.OK);
+        return new ResponseEntity(serviceEmpresa.getById(id), HttpStatus.OK);
     }
     
     @RequestMapping(value = "/delete", method = POST)
-    public ResponseEntity deleteUser(@RequestParam(value = "id") long id) {
+    public ResponseEntity deleteCompany(@RequestParam(value = "id") long id) {
         // ver como informar q se elimino correctamente al usuario
-        serviceUsuario.delete(id);
+        serviceEmpresa.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
     
     @RequestMapping(value = "/update", method = POST)
-    public ResponseEntity<Usuario> updateUser(@RequestBody Usuario usuario) {
-        return new ResponseEntity(serviceUsuario.update(usuario), HttpStatus.OK);
+    public ResponseEntity<Empresa> updateCompany(@RequestBody Empresa empresa) {
+        return new ResponseEntity(serviceEmpresa.update(empresa), HttpStatus.OK);
     }
 }

@@ -5,6 +5,11 @@
  */
 package com.alex.miruta2018.model;
 
+import com.alex.miruta2018.support.JsonToPointDeserializer;
+import com.alex.miruta2018.support.PointToJsonSerializer;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -39,11 +44,13 @@ public class PuntoInteres implements Serializable{
     private String nombre;
     
     @Column(name = "coordenada")
+    @JsonSerialize(using = PointToJsonSerializer.class)
+    @JsonDeserialize(using = JsonToPointDeserializer.class)
     private Point coordenada;
     
-//    @ManyToOne
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="Usuario_ID", nullable = false)
+    @JsonBackReference
     private Usuario usuario;
     
     public PuntoInteres(){        

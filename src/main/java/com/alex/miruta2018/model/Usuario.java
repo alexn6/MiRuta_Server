@@ -5,9 +5,11 @@
  */
 package com.alex.miruta2018.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +36,8 @@ public class Usuario implements Serializable {
     
 //    private List<Recorrido> recorrido;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    @JsonIgnore
 //    @JsonInclude(Include.NON_EMPTY)
+    @JsonManagedReference
     private List<PuntoInteres> ptosInteres;
     
     private static final long serialVersionUID = 1L;

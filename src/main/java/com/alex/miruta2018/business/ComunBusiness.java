@@ -5,17 +5,15 @@
  */
 package com.alex.miruta2018.business;
 
-import com.alex.miruta2018.interfaces.RepositorioUsuarioCrud;
-import com.alex.miruta2018.model.Usuario;
-import com.alex.miruta2018.services.UsuarioService;
-import java.util.List;
+import com.alex.miruta2018.model.Comun;
+import com.alex.miruta2018.model.support.PuntoRecorridoCreate;
+import com.alex.miruta2018.model.support.PuntoRecorridoUpdate;
+import com.alex.miruta2018.services.ComunService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,35 +24,36 @@ import org.springframework.web.bind.annotation.RestController;
  * @author alextc6
  */
 @RestController
-@RequestMapping("/miruta/users")
-public class UsuarioBusiness {
+@RequestMapping("/miruta/puntoRecorrido/comunes")
+public class ComunBusiness {
     
     @Autowired
-    private UsuarioService serviceUsuario;
+    private ComunService serviceComun;
 
     
     @RequestMapping(value = "/create", method = POST)
-    public ResponseEntity<Usuario> saveUser(@RequestBody Usuario usuario) {
-        return new ResponseEntity(serviceUsuario.create(usuario), HttpStatus.OK);
+    public ResponseEntity<Comun> saveComun(@RequestBody PuntoRecorridoCreate comun) {
+        return new ResponseEntity(serviceComun.create(comun), HttpStatus.OK);
     }
     
     @RequestMapping(value = "", method = GET)
-    public ResponseEntity<Usuario> userById(@RequestParam(value = "id", required=false) Long id) {
+    public ResponseEntity<Comun> comunById(@RequestParam(value = "id", required=false) Long id) {
         if(id == null){
-            return new ResponseEntity(serviceUsuario.getAll(), HttpStatus.OK);
+            return new ResponseEntity(serviceComun.getAll(), HttpStatus.OK);
         }
-        return new ResponseEntity(serviceUsuario.getById(id), HttpStatus.OK);
+        return new ResponseEntity(serviceComun.getById(id), HttpStatus.OK);
     }
     
     @RequestMapping(value = "/delete", method = POST)
-    public ResponseEntity deleteUser(@RequestParam(value = "id") long id) {
+    public ResponseEntity deleteComun(@RequestParam(value = "id") long id) {
         // ver como informar q se elimino correctamente al usuario
-        serviceUsuario.delete(id);
+        serviceComun.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
     
     @RequestMapping(value = "/update", method = POST)
-    public ResponseEntity<Usuario> updateUser(@RequestBody Usuario usuario) {
-        return new ResponseEntity(serviceUsuario.update(usuario), HttpStatus.OK);
+    public ResponseEntity<Comun> updateComun(@RequestBody PuntoRecorridoUpdate comun) {
+        return new ResponseEntity(serviceComun.update(comun), HttpStatus.OK);
     }
+    
 }
