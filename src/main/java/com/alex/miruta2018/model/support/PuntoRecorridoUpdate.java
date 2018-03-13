@@ -14,6 +14,7 @@ import java.io.Serializable;
 public class PuntoRecorridoUpdate implements Serializable{
     
     private long idPunto;
+    private int orden;
     private String descripcion;
     private double lat;
     private double lon;
@@ -21,7 +22,8 @@ public class PuntoRecorridoUpdate implements Serializable{
     public PuntoRecorridoUpdate(){        
     }
     
-    public PuntoRecorridoUpdate(long idPunto, double lat, double lon, String descripcion){
+    public PuntoRecorridoUpdate(long idPunto, int orden, double lat, double lon, String descripcion){
+        this.orden = orden;
         this.idPunto = idPunto;
         this.lat = lat;
         this.lon = lon;
@@ -36,6 +38,14 @@ public class PuntoRecorridoUpdate implements Serializable{
         this.idPunto = idPunto;
     }
 
+    public int getOrden() {
+        return orden;
+    }
+
+    public void setOrden(int orden) {
+        this.orden = orden;
+    }
+    
     public String getDescripcion() {
         return descripcion;
     }

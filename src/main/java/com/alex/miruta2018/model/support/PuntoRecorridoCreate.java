@@ -13,6 +13,7 @@ import java.io.Serializable;
  */
 public class PuntoRecorridoCreate implements Serializable{
     
+    private int orden;
     private String descripcion;
     private double lat;
     private double lon;
@@ -20,12 +21,21 @@ public class PuntoRecorridoCreate implements Serializable{
     public PuntoRecorridoCreate(){        
     }
     
-    public PuntoRecorridoCreate(double lat, double lon, String descripcion){
+    public PuntoRecorridoCreate(int orden, double lat, double lon, String descripcion){
+        this.orden = orden;
         this.lat = lat;
         this.lon = lon;
         this.descripcion = descripcion;
     }
 
+    public int getOrden() {
+        return orden;
+    }
+
+    public void setOrden(int orden) {
+        this.orden = orden;
+    }
+    
     public String getDescripcion() {
         return descripcion;
     }

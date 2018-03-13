@@ -32,8 +32,6 @@ public class RecorridoBusiness {
     
     @RequestMapping(value = "/create", method = POST)
     public ResponseEntity<Recorrido> saveRecorrido(@RequestBody RecorridoCreate recorrido) {
-        System.out.println("Tomo la peticion.");
-        System.out.println("Datos: "+recorrido);
         return new ResponseEntity(serviceRecorrido.create(recorrido), HttpStatus.OK);
     }
     

@@ -5,12 +5,13 @@
  */
 package com.alex.miruta2018.services;
 
-import com.alex.miruta2018.interfaces.RepositorioEmpresa;
-import com.alex.miruta2018.interfaces.RepositorioUnidadTransporte;
+import com.alex.miruta2018.repo.crud.RepositorioEmpresa;
+import com.alex.miruta2018.repo.crud.RepositorioUnidadTransporte;
 import com.alex.miruta2018.model.Empresa;
 import com.alex.miruta2018.model.UnidadTransporte;
 import com.alex.miruta2018.model.support.UnidadTransporteCreate;
 import com.alex.miruta2018.model.support.UnidadTransporteUpdate;
+import com.alex.miruta2018.repo.queries.RepositorioUnidadTransporteJpa;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +27,15 @@ public class UnidadTransporteService {
     
     @Autowired
     private RepositorioUnidadTransporte repoUniTransporte;
+    @Autowired
+    private RepositorioUnidadTransporteJpa repoUniTransporteQueries;
     
     @Autowired
     private RepositorioEmpresa repoEmpresa;
+    
+    
+    // ************************************ ABMC ************************************
+    // ******************************************************************************
     
     public UnidadTransporte getById(long id){
         return repoUniTransporte.findOne(id);
@@ -36,9 +43,8 @@ public class UnidadTransporteService {
     
     public List<UnidadTransporte> getAll(){
         Iterable<UnidadTransporte> unidades = repoUniTransporte.findAll();
-        List<UnidadTransporte> list = new ArrayList<UnidadTransporte>();
+        List<UnidadTransporte> list = new ArrayList<>();
         unidades.forEach(list::add);
-//        System.out.println("Unidades obtenidas: "+list.size());
         return list;
     }
     
@@ -67,5 +73,13 @@ public class UnidadTransporteService {
     // ver si mandar algun mje cuando se elimina correctamente
     public void delete(Long id){
         repoUniTransporte.delete(id);
+    }
+    
+    
+    // ************************************ SOPORTE ************************************
+    // *********************************************************************************
+    
+    public List<String> getAllNames(){
+        return repoUniTransporteQueries.findAllNames();
     }
 }

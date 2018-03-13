@@ -5,7 +5,7 @@
  */
 package com.alex.miruta2018.test.model;
 
-import com.alex.miruta2018.interfaces.RepositorioParada;
+import com.alex.miruta2018.repo.crud.RepositorioParada;
 import com.alex.miruta2018.model.Parada;
 import com.alex.miruta2018.test.config.ConfigTest;
 import com.alex.miruta2018.test.model.ParadaTest.TestController;

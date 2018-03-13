@@ -5,8 +5,8 @@
  */
 package com.alex.miruta2018.test.model;
 
-import com.alex.miruta2018.interfaces.RepositorioEmpresa;
-import com.alex.miruta2018.interfaces.RepositorioRecorrido;
+import com.alex.miruta2018.repo.crud.RepositorioEmpresa;
+import com.alex.miruta2018.repo.crud.RepositorioRecorrido;
 import com.alex.miruta2018.model.Empresa;
 import com.alex.miruta2018.model.Recorrido;
 import com.alex.miruta2018.test.config.ConfigTest;

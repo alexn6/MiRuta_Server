@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.alex.miruta2018.interfaces;
+package com.alex.miruta2018.repo.queries;
 
 import com.alex.miruta2018.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;

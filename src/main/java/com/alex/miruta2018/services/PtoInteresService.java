@@ -5,8 +5,8 @@
  */
 package com.alex.miruta2018.services;
 
-import com.alex.miruta2018.interfaces.RepositorioPtoInteres;
-import com.alex.miruta2018.interfaces.RepositorioUsuarioCrud;
+import com.alex.miruta2018.repo.crud.RepositorioPtoInteres;
+import com.alex.miruta2018.repo.crud.RepositorioUsuarioCrud;
 import com.alex.miruta2018.model.PuntoInteres;
 import com.alex.miruta2018.model.Usuario;
 import com.alex.miruta2018.model.support.PuntoInteresCreate;

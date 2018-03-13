@@ -39,6 +39,9 @@ public class Recorrido implements Serializable{
     @GeneratedValue
     private Long id;
     
+    @Column(name = "nombre")
+    private String nombre;
+    
     @Column(name = "color")
     private String color;
     
@@ -54,6 +57,7 @@ public class Recorrido implements Serializable{
     }
     
     public Recorrido(String color, List<PuntoRecorrido> puntos, UnidadTransporte unidad){
+        this.nombre = "Recorrido-"+unidad.getNombre();
         this.color = color;
         this.puntos = puntos;
         this.unidad = unidad;
@@ -67,6 +71,14 @@ public class Recorrido implements Serializable{
         this.puntos = puntos;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
     public String getColor() {
         return color;
     }

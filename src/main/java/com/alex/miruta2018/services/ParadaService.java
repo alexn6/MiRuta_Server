@@ -5,7 +5,7 @@
  */
 package com.alex.miruta2018.services;
 
-import com.alex.miruta2018.interfaces.RepositorioParada;
+import com.alex.miruta2018.repo.crud.RepositorioParada;
 import com.alex.miruta2018.model.Parada;
 import com.alex.miruta2018.model.support.PuntoRecorridoCreate;
 import com.alex.miruta2018.model.support.PuntoRecorridoUpdate;
@@ -37,7 +37,7 @@ public class ParadaService {
     }
     
     public Parada create(PuntoRecorridoCreate parada){
-        Parada nuevaParada = new Parada(new Point(parada.getLat(), parada.getLon()), parada.getDescripcion());
+        Parada nuevaParada = new Parada(new Point(parada.getLat(), parada.getLon()), parada.getOrden(), parada.getDescripcion());
 //        System.out.println("idParada creada: "+nuevaParada.getId());
         return repoParada.save(nuevaParada);
     }

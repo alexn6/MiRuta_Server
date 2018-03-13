@@ -31,6 +31,8 @@ public class UnidadTransporteBusiness {
     private UnidadTransporteService serviceUniTransporte;
     
 
+    // ************************************ ABMC ************************************
+    // ******************************************************************************
     @RequestMapping(value = "/create", method = POST)
     public ResponseEntity<UnidadTransporte> saveUniTransporte(@RequestBody UnidadTransporteCreate unidad) {
         return new ResponseEntity(serviceUniTransporte.create(unidad), HttpStatus.OK);
@@ -56,4 +58,11 @@ public class UnidadTransporteBusiness {
         return new ResponseEntity(serviceUniTransporte.update(unidad), HttpStatus.OK);
     }
     
+    // ************************************ SOPORTE ************************************
+    // *********************************************************************************
+    
+    @RequestMapping(value = "/names", method = GET)
+    public ResponseEntity<String> nombreUniTransporte() {
+        return new ResponseEntity(serviceUniTransporte.getAllNames(), HttpStatus.OK);
+    }
 }

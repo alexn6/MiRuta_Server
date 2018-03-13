@@ -5,9 +5,9 @@
  */
 package com.alex.miruta2018.services.support;
 
-import com.alex.miruta2018.interfaces.RepositorioComun;
-import com.alex.miruta2018.interfaces.RepositorioEsquina;
-import com.alex.miruta2018.interfaces.RepositorioParada;
+import com.alex.miruta2018.repo.crud.RepositorioComun;
+import com.alex.miruta2018.repo.crud.RepositorioEsquina;
+import com.alex.miruta2018.repo.crud.RepositorioParada;
 import com.alex.miruta2018.model.Comun;
 import com.alex.miruta2018.model.Esquina;
 import com.alex.miruta2018.model.Parada;
@@ -50,19 +50,20 @@ public class RecorridoGenericoService {
         PuntoRecorrido nuevoPunto;
         Point coordenada = new Point(punto.getLat(), punto.getLon());
         String descripcion = punto.getDescripcion();
+        int orden = punto.getOrden();
         
         if(punto.getTipoPunto() == COMUN){
-            nuevoPunto = new Comun(coordenada, descripcion);
+            nuevoPunto = new Comun(coordenada, orden, descripcion);
             return nuevoPunto;
         }
         
         if(punto.getTipoPunto() == ESQUINA){
-            nuevoPunto = new Esquina(coordenada, descripcion);
+            nuevoPunto = new Esquina(coordenada, orden, descripcion);
             return nuevoPunto;
         }
         
         // sino es del tipo q queda por descarte
-        nuevoPunto = new Parada(coordenada, descripcion);
+        nuevoPunto = new Parada(coordenada, orden, descripcion);
         return nuevoPunto;
     }
 }

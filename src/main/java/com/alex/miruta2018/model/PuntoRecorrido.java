@@ -46,6 +46,9 @@ public class PuntoRecorrido implements Serializable{
     @JsonDeserialize(using = JsonToPointDeserializer.class)
     private Point coordenada;
     
+    @Column(name = "orden")
+    private int orden;
+    
     @Column(name = "descripcion")
     private String descripcion;
     
@@ -57,7 +60,8 @@ public class PuntoRecorrido implements Serializable{
     public PuntoRecorrido(){        
     }
     
-    public PuntoRecorrido(Point coordenada, String descripcion){
+    public PuntoRecorrido(Point coordenada, int orden, String descripcion){
+        this.orden = orden;
         this.descripcion = descripcion;
         this.coordenada = coordenada;
     }
@@ -82,6 +86,14 @@ public class PuntoRecorrido implements Serializable{
         this.coordenada = coordenada;
     }
 
+    public int getOrden() {
+        return orden;
+    }
+
+    public void setOrden(int orden) {
+        this.orden = orden;
+    }
+    
     public Recorrido getRecorrido() {
         return recorrido;
     }

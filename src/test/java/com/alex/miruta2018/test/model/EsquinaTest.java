@@ -5,7 +5,7 @@
  */
 package com.alex.miruta2018.test.model;
 
-import com.alex.miruta2018.interfaces.RepositorioEsquina;
+import com.alex.miruta2018.repo.crud.RepositorioEsquina;
 import com.alex.miruta2018.model.Esquina;
 import com.alex.miruta2018.test.config.ConfigTest;
 import com.alex.miruta2018.test.model.EsquinaTest.TestController;

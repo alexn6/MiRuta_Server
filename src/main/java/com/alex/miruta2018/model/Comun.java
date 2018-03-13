@@ -33,8 +33,8 @@ public class Comun extends PuntoRecorrido implements Serializable{
         super();
     }
     
-    public Comun(Point coordenada, String descripcion){
-        super(coordenada, descripcion);
+    public Comun(Point coordenada,int orden, String descripcion){
+        super(coordenada, orden, descripcion);
     }
 
     public Long getId() {
@@ -65,6 +65,14 @@ public class Comun extends PuntoRecorrido implements Serializable{
         super.setRecorrido(recorrido);
     }
     
+    public int getOrden() {
+        return super.getOrden();
+    }
+
+    public void setOrden(int orden) {
+        super.setOrden(orden);
+    }
+     
     @Override
     public String toString() {
         return super.getCoordenada().toString() + " - Punto Comun"; //To change body of generated methods, choose Tools | Templates.

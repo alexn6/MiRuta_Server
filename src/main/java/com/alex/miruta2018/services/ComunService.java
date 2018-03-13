@@ -5,7 +5,7 @@
  */
 package com.alex.miruta2018.services;
 
-import com.alex.miruta2018.interfaces.RepositorioComun;
+import com.alex.miruta2018.repo.crud.RepositorioComun;
 import com.alex.miruta2018.model.Comun;
 import com.alex.miruta2018.model.support.PuntoRecorridoCreate;
 import com.alex.miruta2018.model.support.PuntoRecorridoUpdate;
@@ -37,7 +37,7 @@ public class ComunService {
     }
     
     public Comun create(PuntoRecorridoCreate punto){
-        Comun nuevaComun = new Comun(new Point(punto.getLat(), punto.getLon()), punto.getDescripcion());
+        Comun nuevaComun = new Comun(new Point(punto.getLat(), punto.getLon()), punto.getOrden(), punto.getDescripcion());
         return repoComun.save(nuevaComun);
     }
     

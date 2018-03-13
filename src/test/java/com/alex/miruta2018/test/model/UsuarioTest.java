@@ -18,7 +18,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import com.alex.miruta2018.interfaces.RepositorioUsuarioCrud;
+import com.alex.miruta2018.repo.crud.RepositorioUsuarioCrud;
 
 /**
  *

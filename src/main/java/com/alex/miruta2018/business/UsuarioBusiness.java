@@ -5,7 +5,7 @@
  */
 package com.alex.miruta2018.business;
 
-import com.alex.miruta2018.interfaces.RepositorioUsuarioCrud;
+import com.alex.miruta2018.repo.crud.RepositorioUsuarioCrud;
 import com.alex.miruta2018.model.Usuario;
 import com.alex.miruta2018.services.UsuarioService;
 import java.util.List;

@@ -5,7 +5,7 @@
  */
 package com.alex.miruta2018.services;
 
-import com.alex.miruta2018.interfaces.RepositorioEsquina;
+import com.alex.miruta2018.repo.crud.RepositorioEsquina;
 import com.alex.miruta2018.model.Esquina;
 import com.alex.miruta2018.model.support.PuntoRecorridoCreate;
 import com.alex.miruta2018.model.support.PuntoRecorridoUpdate;
@@ -37,7 +37,7 @@ public class EsquinaService {
     }
     
     public Esquina create(PuntoRecorridoCreate punto){
-        Esquina nuevaEsquina = new Esquina(new Point(punto.getLat(), punto.getLon()), punto.getDescripcion());
+        Esquina nuevaEsquina = new Esquina(new Point(punto.getLat(), punto.getLon()), punto.getOrden(), punto.getDescripcion());
 //        System.out.println("idEsquina creada: "+nuevaEsquina.getId());
         return repoEsquina.save(nuevaEsquina);
     }

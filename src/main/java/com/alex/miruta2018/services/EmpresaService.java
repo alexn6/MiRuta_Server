@@ -5,7 +5,7 @@
  */
 package com.alex.miruta2018.services;
 
-import com.alex.miruta2018.interfaces.RepositorioEmpresa;
+import com.alex.miruta2018.repo.crud.RepositorioEmpresa;
 import com.alex.miruta2018.model.Empresa;
 import java.util.ArrayList;
 import java.util.List;

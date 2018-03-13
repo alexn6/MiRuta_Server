@@ -5,7 +5,7 @@
  */
 package com.alex.miruta2018.test.model;
 
-import com.alex.miruta2018.interfaces.RepositorioEmpresa;
+import com.alex.miruta2018.repo.crud.RepositorioEmpresa;
 import com.alex.miruta2018.model.Empresa;
 import com.alex.miruta2018.test.config.ConfigTest;
 import org.junit.After;
