@@ -9,6 +9,7 @@ import com.alex.miruta2018.repo.crud.RepositorioComun;
 import com.alex.miruta2018.model.Comun;
 import com.alex.miruta2018.model.support.PuntoRecorridoCreate;
 import com.alex.miruta2018.model.support.PuntoRecorridoUpdate;
+import com.alex.miruta2018.repo.queries.RepositorioUnidadTransporteJpa;
 import java.util.ArrayList;
 import java.util.List;
 import org.postgis.Point;
@@ -24,9 +25,11 @@ public class ComunService {
     
     @Autowired
     private RepositorioComun repoComun;
+    @Autowired
+    private RepositorioUnidadTransporteJpa repo;
     
     public Comun getById(long id){
-        return repoComun.findOne(id);
+        return repoComun.findById(id).get();
     }
     
     public List<Comun> getAll(){
@@ -43,7 +46,7 @@ public class ComunService {
     
     public Comun update(PuntoRecorridoUpdate comun){
         
-        Comun comunDB = repoComun.findOne(comun.getIdPunto());
+        Comun comunDB = repoComun.findById(comun.getIdPunto()).get();
         
         comunDB.setCoordenada(new Point(comun.getLat(), comun.getLon()));
         comunDB.setDescripcion(comun.getDescripcion());
@@ -54,6 +57,6 @@ public class ComunService {
     // ver si mandar algun mje cuando se elimina correctamente
     public void delete(Long id){
         // IMPORTANTE: controlar que el recorrido pierda la referencia a esta
-        repoComun.delete(id);
+        repoComun.deleteById(id);
     }
 }

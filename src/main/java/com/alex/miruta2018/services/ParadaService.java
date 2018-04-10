@@ -26,7 +26,7 @@ public class ParadaService {
     private RepositorioParada repoParada;
     
     public Parada getById(long id){
-        return repoParada.findOne(id);
+        return repoParada.findById(id).get();
     }
     
     public List<Parada> getAll(){
@@ -38,13 +38,12 @@ public class ParadaService {
     
     public Parada create(PuntoRecorridoCreate parada){
         Parada nuevaParada = new Parada(new Point(parada.getLat(), parada.getLon()), parada.getOrden(), parada.getDescripcion());
-//        System.out.println("idParada creada: "+nuevaParada.getId());
         return repoParada.save(nuevaParada);
     }
     
     public Parada update(PuntoRecorridoUpdate parada){
         
-        Parada paradaDB = repoParada.findOne(parada.getIdPunto());
+        Parada paradaDB = repoParada.findById(parada.getIdPunto()).get();
         
         paradaDB.setCoordenada(new Point(parada.getLat(), parada.getLon()));
         paradaDB.setDescripcion(parada.getDescripcion());
@@ -55,6 +54,6 @@ public class ParadaService {
     // ver si mandar algun mje cuando se elimina correctamente
     public void delete(Long id){
         // IMPORTANTE: controlar que el recorrido pierda la referencia a esta
-        repoParada.delete(id);
+        repoParada.deleteById(id);
     }
 }

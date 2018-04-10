@@ -19,7 +19,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.6.RELEASE</version>
+        <version>2.0.0.RELEASE</version>
+<!--        <version>1.5.6.RELEASE</version>-->
     </parent>
 
     <dependencies>
@@ -68,17 +69,23 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
         </dependency>
-<!--         ******* controla las anotaciones ******* -->
-<!--        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-        </dependency>-->
 <!--         **************************************** -->
+
+<!-- ************************************************* -->
+<!-- ********* consumo de servicios rest web ******** -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        
+<!-- ************************************************* -->
+
         <dependency>
             <groupId>net.postgis</groupId>
             <artifactId>postgis-jdbc</artifactId>
             <version>2.1.7.2</version>
         </dependency>
+        
     </dependencies>
 
 

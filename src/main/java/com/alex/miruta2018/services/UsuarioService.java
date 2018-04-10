@@ -27,7 +27,7 @@ public class UsuarioService {
     private BCryptPasswordEncoder encriptadorPassword;
     
     public Usuario getById(Long id){
-        return repoCrudUsuario.findOne(id);
+        return repoCrudUsuario.findById(id).get();
     }
     
     public List<Usuario> getAll(){
@@ -49,6 +49,6 @@ public class UsuarioService {
     
     // ver si mandar algun mje cuando se elimina correctamente
     public void delete(Long id){
-        repoCrudUsuario.delete(id);
+        repoCrudUsuario.deleteById(id);
     }
 }

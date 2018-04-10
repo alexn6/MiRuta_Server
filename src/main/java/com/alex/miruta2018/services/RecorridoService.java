@@ -30,7 +30,7 @@ public class RecorridoService {
     private RepositorioUnidadTransporte repoUniTransporte;
     
     public Recorrido getById(long id){
-        return repoRecorrido.findOne(id);
+        return repoRecorrido.findById(id).get();
     }
     
     public List<Recorrido> getAll(){
@@ -43,7 +43,7 @@ public class RecorridoService {
     public Recorrido create(RecorridoCreate recorrido){
         List<PuntoRecorrido> puntos = RecorridoGenericoService.getPuntosRecorrido(recorrido.getPuntos());
         
-        UnidadTransporte unidad = repoUniTransporte.findOne(recorrido.getIdUnidadTransporte());
+        UnidadTransporte unidad = repoUniTransporte.findById(recorrido.getIdUnidadTransporte()).get();
         
         Recorrido nuevoRecorrido = new Recorrido(recorrido.getColor(), puntos, unidad);
         
@@ -63,7 +63,7 @@ public class RecorridoService {
     // ver si mandar algun mje cuando se elimina correctamente
     public void delete(Long id){
         // IMPORTANTE: controlar que el recorrido pierda la referencia a esta
-        repoRecorrido.delete(id);
+        repoRecorrido.deleteById(id);
     }
     
 }

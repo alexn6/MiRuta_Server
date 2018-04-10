@@ -26,7 +26,7 @@ public class EsquinaService {
     private RepositorioEsquina repoEsquina;
     
     public Esquina getById(long id){
-        return repoEsquina.findOne(id);
+        return repoEsquina.findById(id).get();
     }
     
     public List<Esquina> getAll(){
@@ -38,13 +38,12 @@ public class EsquinaService {
     
     public Esquina create(PuntoRecorridoCreate punto){
         Esquina nuevaEsquina = new Esquina(new Point(punto.getLat(), punto.getLon()), punto.getOrden(), punto.getDescripcion());
-//        System.out.println("idEsquina creada: "+nuevaEsquina.getId());
         return repoEsquina.save(nuevaEsquina);
     }
     
     public Esquina update(PuntoRecorridoUpdate esquina){
         
-        Esquina esquinaDB = repoEsquina.findOne(esquina.getIdPunto());
+        Esquina esquinaDB = repoEsquina.findById(esquina.getIdPunto()).get();
         
         esquinaDB.setCoordenada(new Point(esquina.getLat(), esquina.getLon()));
         esquinaDB.setDescripcion(esquina.getDescripcion());
@@ -55,6 +54,6 @@ public class EsquinaService {
     // ver si mandar algun mje cuando se elimina correctamente
     public void delete(Long id){
         // IMPORTANTE: controlar que el recorrido pierda la referencia a esta
-        repoEsquina.delete(id);
+        repoEsquina.deleteById(id);
     }
 }

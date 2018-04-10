@@ -23,7 +23,7 @@ public class EmpresaService {
     private RepositorioEmpresa repoEmpresa;
     
     public Empresa getById(long id){
-        return repoEmpresa.findOne(id);
+        return repoEmpresa.findById(id).get();
     }
     
     public List<Empresa> getAll(){
@@ -43,7 +43,7 @@ public class EmpresaService {
     
     // ver si mandar algun mje cuando se elimina correctamente
     public void delete(Long id){
-        repoEmpresa.delete(id);
+        repoEmpresa.deleteById(id);
     }
     
 }

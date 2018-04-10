@@ -38,7 +38,7 @@ public class UnidadTransporteService {
     // ******************************************************************************
     
     public UnidadTransporte getById(long id){
-        return repoUniTransporte.findOne(id);
+        return repoUniTransporte.findById(id).get();
     }
     
     public List<UnidadTransporte> getAll(){
@@ -49,7 +49,7 @@ public class UnidadTransporteService {
     }
     
     public UnidadTransporte create(UnidadTransporteCreate unidad){
-        Empresa emp = repoEmpresa.findOne(unidad.getIdEmpresa());
+        Empresa emp = repoEmpresa.findById(unidad.getIdEmpresa()).get();
         UnidadTransporte nuevaUnidad = new UnidadTransporte(unidad.getNombre(), LocalTime.of(unidad.getHoraInicio(), unidad.getMinInicio()), LocalTime.of(unidad.getHoraFin(), unidad.getMinFin()), unidad.getFrecuencia(), unidad.getPrecioBoleto(), emp);
         System.out.println("idUniTransporte creado: "+nuevaUnidad.getId());
         return repoUniTransporte.save(nuevaUnidad);
@@ -57,8 +57,8 @@ public class UnidadTransporteService {
     
     public UnidadTransporte update(UnidadTransporteUpdate unidad){
         // asegurar desde el cliente que estos campos correspondan siempre a datos existentes
-        UnidadTransporte unidadDB = repoUniTransporte.findOne(unidad.getId());
-        Empresa emp = repoEmpresa.findOne(unidad.getIdEmpresa());
+        UnidadTransporte unidadDB = repoUniTransporte.findById(unidad.getId()).get();
+        Empresa emp = repoEmpresa.findById(unidad.getIdEmpresa()).get();
         
         unidadDB.setNombre(unidad.getNombre());
         unidadDB.setHoraInicio(LocalTime.of(unidad.getHoraInicio(), unidad.getMinInicio()));
@@ -72,7 +72,7 @@ public class UnidadTransporteService {
     
     // ver si mandar algun mje cuando se elimina correctamente
     public void delete(Long id){
-        repoUniTransporte.delete(id);
+        repoUniTransporte.deleteById(id);
     }
     
     

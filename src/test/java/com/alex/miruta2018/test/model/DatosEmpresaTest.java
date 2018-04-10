@@ -45,7 +45,6 @@ public class DatosEmpresaTest {
     @Test
     public void test(){
         System.out.println("id de la empresa: "+emp.getId());
-//        Empresa e = contTest.findById(emp.getId());
         
         Empresa e = contTest.finByNombre(emp.getNombre());
         
@@ -77,7 +76,7 @@ public class DatosEmpresaTest {
          * @return
          */
         public Empresa findById(Long id){
-            return repo.findOne(id);
+            return repo.findById(id).get();
         }
         
         public void saveEmpresa(Empresa e){

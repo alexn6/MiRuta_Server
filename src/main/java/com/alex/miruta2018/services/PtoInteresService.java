@@ -31,7 +31,7 @@ public class PtoInteresService {
     private RepositorioUsuarioCrud repoCrudUsuario;
     
     public PuntoInteres getById(Long id){
-        return repoCrudPtoInteres.findOne(id);
+        return repoCrudPtoInteres.findById(id).get();
     }
     
     public List<PuntoInteres> getAll(){
@@ -45,12 +45,12 @@ public class PtoInteresService {
         Usuario usuario;
         PuntoInteres nuevoPunto;
         
-        if(!repoCrudUsuario.exists(punto.getIdUsuario())){
+        if(!repoCrudUsuario.existsById(punto.getIdUsuario())){
             System.err.println("El usuario ingresado no se encuentra en la DB.!!!!!");
             return null;
         }
         else{
-            usuario = repoCrudUsuario.findOne(punto.getIdUsuario());
+            usuario = repoCrudUsuario.findById(punto.getIdUsuario()).get();
             nuevoPunto = new PuntoInteres(punto.getNombre(), new Point(punto.getLat(), punto.getLon()), usuario);
         }
         return repoCrudPtoInteres.save(nuevoPunto);
@@ -59,7 +59,7 @@ public class PtoInteresService {
     // se actualizan solo los datos simples del punto, el id y el usuario no se cambian
     public PuntoInteres update(PuntoInteresUpdate punto){
 
-        PuntoInteres puntoDB = repoCrudPtoInteres.findOne(punto.getId());
+        PuntoInteres puntoDB = repoCrudPtoInteres.findById(punto.getId()).get();
 
         // seteamos estos campos ya q los demas nunk se modifican
         puntoDB.setNombre(punto.getNombre());
@@ -70,6 +70,6 @@ public class PtoInteresService {
     
     // ver si mandar algun mje cuando se elimina correctamente
     public void delete(Long id){
-        repoCrudPtoInteres.delete(id);
+        repoCrudPtoInteres.deleteById(id);
     }
 }

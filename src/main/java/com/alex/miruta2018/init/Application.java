@@ -22,6 +22,7 @@ import com.alex.miruta2018.repo.crud.RepositorioParada;
 import com.alex.miruta2018.repo.crud.RepositorioPtoInteres;
 import com.alex.miruta2018.repo.crud.RepositorioRecorrido;
 import com.alex.miruta2018.repo.crud.RepositorioUnidadTransporte;
+import com.alex.miruta2018.services.ConsumeServiceWeb;
 import com.alex.miruta2018.services.EmpresaService;
 import com.alex.miruta2018.services.UsuarioService;
 import java.time.LocalTime;
@@ -35,7 +36,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration;
+//import org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -112,13 +114,11 @@ public class Application {
     public CommandLineRunner cargaInicialUnidadTransporte(RepositorioUnidadTransporte repoUniTransporte, RepositorioEmpresa repoEmpresa) {
         return (args) -> {
 //            UnidadTransporte unidad;
-//            unidad = new UnidadTransporte("Unidad1", LocalTime.of(8, 0), LocalTime.of(22, 0), "20", "9.50", repoEmpresa.findOne(2L));
+//            unidad = new UnidadTransporte("Unidad1", LocalTime.of(8, 0), LocalTime.of(22, 0), 20, 9.50f, repoEmpresa.findOne(3L));
 //            repoUniTransporte.save(unidad);
-//            log.info("Se guardo la unidad 1");
 //            
-//            unidad = new UnidadTransporte("Unidad2", LocalTime.of(7, 30), LocalTime.of(22, 15), "15", "11.00", repoEmpresa.findOne(3L));
+//            unidad = new UnidadTransporte("Unidad2", LocalTime.of(7, 30), LocalTime.of(22, 15), 15, 11.00f, repoEmpresa.findOne(4L));
 //            repoUniTransporte.save(unidad);
-//            log.info("Se guardo la unidad 2");
 //
 //            // buscamos todas las paradas a modo de prueba
 //            log.info("**** Unidades de transporte guardadas: ****");
@@ -138,7 +138,7 @@ public class Application {
 //            // guardamos algunos puntos
 //            ptoInt = new PuntoInteres("ranchoLider", new Point(-65.0435781612698, -42.76403644138906), repoUsuario.findOne(1L));
 //            repoPtoInteres.save(ptoInt);
-//            ptoInt = new PuntoInteres("unRanchito", new Point(-65.04562200453915, -42.75792890613414), repoUsuario.findOne(1L));
+//            ptoInt = new PuntoInteres("unRanchito", new Point(-65.04562200453915, -42.75792890613414), repoUsuario.findOne(2L));
 //            repoPtoInteres.save(ptoInt);
 //
 //
@@ -244,7 +244,7 @@ public class Application {
 //            ptoRecorrido = new Esquina(new Point(-42.7688140289225, -65.048565728933), 11, "esquina 2");
 //            paradas.add(ptoRecorrido);
 //
-//            reco = new Recorrido("gris", paradas, repoUniTRansporte.findOne(4L));
+//            reco = new Recorrido("gris", paradas, repoUniTRansporte.findOne(6L));
 //            repoRecorrido.save(reco);
 //            log.info("Se creo el recorrido 2, con nuevos puntos: "+reco.toString());
 //
@@ -255,6 +255,16 @@ public class Application {
 //            }
 //            log.info("********************************************");
 	};
+    }
+    
+    //    ###############################################################################
+//    ################################### TEST CONSUME API ################################### 
+    @Bean
+    public CommandLineRunner testServiceWeb(ConsumeServiceWeb service) {
+        return (args) -> {
+            service.getCoordPuntoMasCercano("-51.11354827880858","-30.026056381156316");
+            service.getCoordPuntoMasCercanoCustom("-51.11354827880858","-30.026056381156316");
+        };
     }
     
 }
