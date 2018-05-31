@@ -263,7 +263,13 @@ public class Application {
     public CommandLineRunner testServiceWeb(ConsumeServiceWeb service) {
         return (args) -> {
             service.getCoordPuntoMasCercano("-51.11354827880858","-30.026056381156316");
-            service.getCoordPuntoMasCercanoCustom("-51.11354827880858","-30.026056381156316");
+//            service.getCoordPuntoMasCercanoCustom("-51.11354827880858","-30.026056381156316");
+            
+            String lon1 = "-51.07714";
+            String lat1 = "-29.993041";
+            String lon2 = "-51.077202";
+            String lat2 = "-29.989399";
+//            service.getRuta(lon1, lat1, lon2, lat2);
         };
     }
     

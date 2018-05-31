@@ -5,7 +5,6 @@
  */
 package com.alex.miruta2018.model.support;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -13,22 +12,26 @@ import java.util.List;
  *
  * @author alextc6
  */
-public class RespPuntoMasCercano {
+public class RespRuta {
     
+    @JsonProperty("routes")
+    private List<Object> routes;
     @JsonProperty("waypoints")
     private List<Object> waypoints;
     @JsonProperty("code")
     private String code;
     
-    public RespPuntoMasCercano(){
-    }
-    
-    public RespPuntoMasCercano(List<Object> waypoints, String code){
-        this.waypoints = waypoints;
-        this.code = code;
+    public RespRuta(){
     }
 
-    @JsonIgnore 
+    public List<Object> getRoutes() {
+        return routes;
+    }
+
+    public void setRoutes(List<Object> routes) {
+        this.routes = routes;
+    }
+
     public List<Object> getWaypoints() {
         return waypoints;
     }
@@ -47,7 +50,7 @@ public class RespPuntoMasCercano {
 
     @Override
     public String toString() {
-        return "PuntoMasCercano{" + "cod resp=" + code + ", waypoints: " + waypoints.toString() + "}";
+        return "RespRuta{" + "routes=" + routes + ", waypoints=" + waypoints + ", code=" + code + '}';
     }
     
 }
