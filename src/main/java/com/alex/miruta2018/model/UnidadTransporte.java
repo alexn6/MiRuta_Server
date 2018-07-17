@@ -5,6 +5,7 @@
  */
 package com.alex.miruta2018.model;
 
+import com.alex.miruta2018.support.ConverterTime;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.time.LocalTime;
@@ -12,6 +13,7 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,6 +22,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 
@@ -54,9 +58,11 @@ public class UnidadTransporte implements Serializable{
     private String nombre;
     
     @Column(name = "horainicio")
+    @Convert(converter = ConverterTime.class)
     private LocalTime horaInicio;
     
     @Column(name = "horafin")
+    @Convert(converter = ConverterTime.class)
     private LocalTime horaFin;
     
     @Column(name = "frecuencia")
@@ -69,6 +75,17 @@ public class UnidadTransporte implements Serializable{
     }
     
     public UnidadTransporte(String nombre, LocalTime horaInicio, LocalTime horaFin, int frecuenacia, float precioBoleto, Empresa empresa){
+        this.nombre = nombre;
+        this.empresa = empresa;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+        this.frecuencia = frecuenacia;
+        this.precioBoleto = precioBoleto;
+        // se p
+    }
+    
+    public UnidadTransporte(long id, String nombre, LocalTime horaInicio, LocalTime horaFin, int frecuenacia, float precioBoleto, Empresa empresa){
+        this.id = id;
         this.nombre = nombre;
         this.empresa = empresa;
         this.horaInicio = horaInicio;

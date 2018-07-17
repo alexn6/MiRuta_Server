@@ -8,6 +8,7 @@ package com.alex.miruta2018.business;
 import com.alex.miruta2018.model.Recorrido;
 import com.alex.miruta2018.model.support.RecorridoCreate;
 import com.alex.miruta2018.services.RecorridoService;
+import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,13 +33,27 @@ public class RecorridoBusiness {
     
     @RequestMapping(value = "/create", method = POST)
     public ResponseEntity<Recorrido> saveRecorrido(@RequestBody RecorridoCreate recorrido) {
-        return new ResponseEntity(serviceRecorrido.create(recorrido), HttpStatus.OK);
+        Recorrido recorridoCreado = null;
+        HttpStatus estadoPeticion = HttpStatus.OK;
+        try {
+            recorridoCreado = serviceRecorrido.create(recorrido);
+        }catch (NoSuchElementException e) {
+            System.err.println("ERROR al crear RECORRIDO. No existe la unidad de transporte asignada.");
+            estadoPeticion = HttpStatus.BAD_REQUEST;
+        }
+        catch (Exception e) {
+            System.err.println("ERROR al crear RECORRIDO.");
+            estadoPeticion = HttpStatus.BAD_REQUEST;
+        }
+//        Recorrido recorridoCreado = serviceRecorrido.create(recorrido);
+//        return new ResponseEntity(serviceRecorrido.create(recorrido), HttpStatus.OK);
+        return new ResponseEntity(recorridoCreado, estadoPeticion);
     }
     
     @RequestMapping(value = "", method = GET)
     public ResponseEntity<Recorrido> recorridoById(@RequestParam(value = "id", required=false) Long id) {
         if(id == null){
-            return new ResponseEntity(serviceRecorrido.getAll(), HttpStatus.OK);
+            return new ResponseEntity(serviceRecorrido.getAll(), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity(serviceRecorrido.getById(id), HttpStatus.OK);
     }

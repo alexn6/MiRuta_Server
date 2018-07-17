@@ -36,6 +36,10 @@ public class Esquina extends PuntoRecorrido implements Serializable{
     public Esquina(Point coordenada,int orden, String descripcion){
         super(coordenada, orden, descripcion);
     }
+    
+    public Esquina(long id, Point coordenada,int orden, String descripcion){
+        super(id, coordenada, orden, descripcion);
+    }
 
     public Long getId() {
         return super.getId();

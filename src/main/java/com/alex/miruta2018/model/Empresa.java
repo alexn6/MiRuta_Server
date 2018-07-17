@@ -60,6 +60,15 @@ public class Empresa implements Serializable{
         this.telefono = telefono;
 //        this.unidad = unidad;
     }
+    
+    public Empresa(long id, String nombre, String cuit, String mail, String telefono){
+        this.id = id;
+        this.nombre = nombre;
+        this.cuit = cuit;
+        this.mail = mail;
+        this.telefono = telefono;
+//        this.unidad = unidad;
+    }
 
     public Long getId() {
         return id;

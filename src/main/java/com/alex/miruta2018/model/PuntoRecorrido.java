@@ -66,6 +66,13 @@ public class PuntoRecorrido implements Serializable{
         this.coordenada = coordenada;
     }
     
+    public PuntoRecorrido(long id, Point coordenada, int orden, String descripcion){
+        this.id = id;
+        this.orden = orden;
+        this.descripcion = descripcion;
+        this.coordenada = coordenada;
+    }
+    
     public Long getId() {
         return id;
     }

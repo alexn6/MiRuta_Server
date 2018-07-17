@@ -14,6 +14,7 @@ import com.alex.miruta2018.model.support.RecorridoCreate;
 import com.alex.miruta2018.services.support.RecorridoGenericoService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,14 +41,13 @@ public class RecorridoService {
         return list;
     }
     
-    public Recorrido create(RecorridoCreate recorrido){
+    public Recorrido create(RecorridoCreate recorrido) throws NoSuchElementException{
         List<PuntoRecorrido> puntos = RecorridoGenericoService.getPuntosRecorrido(recorrido.getPuntos());
         
         UnidadTransporte unidad = repoUniTransporte.findById(recorrido.getIdUnidadTransporte()).get();
-        
         Recorrido nuevoRecorrido = new Recorrido(recorrido.getColor(), puntos, unidad);
-        
-        return repoRecorrido.save(nuevoRecorrido);
+
+        return nuevoRecorrido;
     }
     
 //    public Recorrido update(RecorridoCreate comun){

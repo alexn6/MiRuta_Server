@@ -68,6 +68,15 @@ public class Usuario implements Serializable {
         this.ptosInteres = new ArrayList<>();
 //        this.recorrido = new ArrayList<>();
     }
+    
+    public Usuario(long id, String nombre, String pass, String mail){
+        this.id = id;
+        this.nombre = nombre;
+        this.pass = pass;
+        this.mail = mail;
+        this.ptosInteres = new ArrayList<>();
+//        this.recorrido = new ArrayList<>();
+    }
 
     public long getId() {
         return id;

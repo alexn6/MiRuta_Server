@@ -60,14 +60,21 @@
             <scope>test</scope>
 	</dependency>
         
-        <!--         ******* conexion a la DB y anotaciones ******* -->
+        <!--         ******* conexion a la DB y anotaciones(implementacion de JPA) ******* -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+        <!-- JPA 2.1 no es compatible del todo con objestos TIME o DATE, este version de hibernate soluciona esa incompatibilidad -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.2.12.Final</version>
+        </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+            <scope>runtime</scope>
         </dependency>
 <!--         **************************************** -->
 

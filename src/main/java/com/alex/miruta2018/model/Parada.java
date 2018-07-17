@@ -44,6 +44,10 @@ public class Parada extends PuntoRecorrido implements Serializable{
     public Parada(Point coordenada, int orden, String descripcion){
         super(coordenada, orden, descripcion);
     }
+    
+    public Parada(long id, Point coordenada, int orden, String descripcion){
+        super(id, coordenada, orden, descripcion);
+    }
 
     public Long getId() {
         return super.getId();

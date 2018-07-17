@@ -61,6 +61,13 @@ public class PuntoInteres implements Serializable{
         this.coordenada = coordenada;
         this.usuario = usuario;
     }
+    
+    public PuntoInteres(long id, String nombre, Point coordenada, Usuario usuario){
+        this.id = id;
+        this.nombre = nombre;
+        this.coordenada = coordenada;
+        this.usuario = usuario;
+    }
 
     public Long getId() {
         return id;

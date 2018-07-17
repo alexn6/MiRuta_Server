@@ -22,6 +22,7 @@ import com.alex.miruta2018.repo.crud.RepositorioParada;
 import com.alex.miruta2018.repo.crud.RepositorioPtoInteres;
 import com.alex.miruta2018.repo.crud.RepositorioRecorrido;
 import com.alex.miruta2018.repo.crud.RepositorioUnidadTransporte;
+import com.alex.miruta2018.repo.queries.RepositorioUsuarioJpa;
 import com.alex.miruta2018.services.ConsumeServiceWeb;
 import com.alex.miruta2018.services.EmpresaService;
 import com.alex.miruta2018.services.UsuarioService;
@@ -69,10 +70,10 @@ public class Application {
         return (args) -> {
 //            Usuario u;
 //            // guardamos algunos usuarios
-//            u = new Usuario("admin", "123", "mailalgo@gmail.com");
+//            u = new Usuario(1L, "admin", "123", "mailalgo@gmail.com");
 //            service.create(u);
 //            
-//            u = new Usuario("alex", "111", "mail");
+//            u = new Usuario(2L, "alex", "111", "mail");
 //            service.create(u);
 //
 //            // buscamos todas las paradas a modo de prueba
@@ -91,11 +92,11 @@ public class Application {
         return (args) -> {
 //            Empresa emp;
 //            
-//            emp = new Empresa("Benitez", "23-23456789-2", "benitez@gmail.com", "4474536");
+//            emp = new Empresa(1L, "Benitez", "23-23456789-2", "benitez@gmail.com", "4474536");
 //            service.create(emp);
 //            log.info("Se creo la empresa BENITEZ");
 //            
-//            emp = new Empresa("Ceferino", "25-23251789-0", "ceferino@gmail.com", "4471256");
+//            emp = new Empresa(2L, "Ceferino", "25-23251789-0", "ceferino@gmail.com", "4471256");
 //            service.create(emp);
 //            log.info("Se creo la empresa CEFERINO");
 //
@@ -114,10 +115,10 @@ public class Application {
     public CommandLineRunner cargaInicialUnidadTransporte(RepositorioUnidadTransporte repoUniTransporte, RepositorioEmpresa repoEmpresa) {
         return (args) -> {
 //            UnidadTransporte unidad;
-//            unidad = new UnidadTransporte("Unidad1", LocalTime.of(8, 0), LocalTime.of(22, 0), 20, 9.50f, repoEmpresa.findOne(3L));
+//            unidad = new UnidadTransporte("Unidad1", LocalTime.of(8, 0), LocalTime.of(22, 0), 20, 9.50f, repoEmpresa.findById(3L).get());
 //            repoUniTransporte.save(unidad);
 //            
-//            unidad = new UnidadTransporte("Unidad2", LocalTime.of(7, 30), LocalTime.of(22, 15), 15, 11.00f, repoEmpresa.findOne(4L));
+//            unidad = new UnidadTransporte("Unidad2", LocalTime.of(7, 30), LocalTime.of(22, 15), 15, 11.00f, repoEmpresa.findById(4L).get());
 //            repoUniTransporte.save(unidad);
 //
 //            // buscamos todas las paradas a modo de prueba
@@ -136,9 +137,9 @@ public class Application {
         return (args) -> {
 //            PuntoInteres ptoInt;
 //            // guardamos algunos puntos
-//            ptoInt = new PuntoInteres("ranchoLider", new Point(-65.0435781612698, -42.76403644138906), repoUsuario.findOne(1L));
+//            ptoInt = new PuntoInteres("ranchoLider", new Point(-65.0435781612698, -42.76403644138906), repoUsuario.findById(1L).get());
 //            repoPtoInteres.save(ptoInt);
-//            ptoInt = new PuntoInteres("unRanchito", new Point(-65.04562200453915, -42.75792890613414), repoUsuario.findOne(2L));
+//            ptoInt = new PuntoInteres("unRanchito", new Point(-65.04562200453915, -42.75792890613414), repoUsuario.findById(2L).get());
 //            repoPtoInteres.save(ptoInt);
 //
 //
@@ -219,12 +220,12 @@ public class Application {
 //            List<PuntoRecorrido> paradas = new ArrayList<>();
 //            
 //            // *********** creamos un recorrido buscando puntos ya creados *************
-//            paradas.add(repoParada.findOne(9L));
-//            paradas.add(repoParada.findOne(10L));
-//            paradas.add(repoEsquina.findOne(11L));
-//            paradas.add(repoComun.findOne(12L));
+//            paradas.add(repoParada.findById(9L).get());
+//            paradas.add(repoParada.findById(10L).get());
+//            paradas.add(repoEsquina.findById(11L).get());
+//            paradas.add(repoComun.findById(12L).get());
 //            
-//            reco = new Recorrido("blanco", paradas, repoUniTRansporte.findOne(5L));
+//            reco = new Recorrido("blanco", paradas, repoUniTRansporte.findById(5L).get());
 //            repoRecorrido.save(reco);
 //            log.info("Se creo el recorrido 1, con puntos ya guardados: "+reco.toString());
 //            
@@ -244,7 +245,7 @@ public class Application {
 //            ptoRecorrido = new Esquina(new Point(-42.7688140289225, -65.048565728933), 11, "esquina 2");
 //            paradas.add(ptoRecorrido);
 //
-//            reco = new Recorrido("gris", paradas, repoUniTRansporte.findOne(6L));
+//            reco = new Recorrido("gris", paradas, repoUniTRansporte.findById(6L).get());
 //            repoRecorrido.save(reco);
 //            log.info("Se creo el recorrido 2, con nuevos puntos: "+reco.toString());
 //
@@ -262,6 +263,10 @@ public class Application {
     @Bean
     public CommandLineRunner testServiceWeb(ConsumeServiceWeb service) {
         return (args) -> {
+            
+            System.out.println("############################ Testing del API de RUTAS ############################");
+            System.out.println("##################################################################################");
+            
             service.getCoordPuntoMasCercano("-51.11354827880858","-30.026056381156316");
 //            service.getCoordPuntoMasCercanoCustom("-51.11354827880858","-30.026056381156316");
             
