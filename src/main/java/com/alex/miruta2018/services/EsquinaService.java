@@ -5,7 +5,6 @@
  */
 package com.alex.miruta2018.services;
 
-import com.alex.miruta2018.repo.crud.RepositorioEsquina;
 import com.alex.miruta2018.model.Esquina;
 import com.alex.miruta2018.model.support.PuntoRecorridoCreate;
 import com.alex.miruta2018.model.support.PuntoRecorridoUpdate;
@@ -14,6 +13,7 @@ import java.util.List;
 import org.postgis.Point;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.alex.miruta2018.repo.crud.RepositorioEsquinaCrud;
 
 /**
  *
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
 public class EsquinaService {
     
     @Autowired
-    private RepositorioEsquina repoEsquina;
+    private RepositorioEsquinaCrud repoEsquina;
     
     public Esquina getById(long id){
         return repoEsquina.findById(id).get();

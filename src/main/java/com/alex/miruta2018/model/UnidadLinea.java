@@ -6,10 +6,8 @@
 package com.alex.miruta2018.model;
 
 import com.alex.miruta2018.support.ConverterTime;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.time.LocalTime;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,50 +15,42 @@ import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-
+import org.postgis.LineString;
 
 /**
  *
  * @author alextc6
  */
-@Entity(name = "unidadtransporte")
-@Table(name = "unidadtransporte")
-public class UnidadTransporte implements Serializable{
-    
-//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = true)
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    // cascade a PERSIST y REMOVE, de forma que cuando persistamos una UNIDAD que tenga asociada una nuevo RECORRIDO,
-    // ésta también se persistirá, y como no tiene sentido que exista una RECORRIDO sin una UNIDAD asociada, si eliminamos
-    // la instancia de la UNIDAD también eliminará la instancia del RECORRIDO asociado.
-//    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, optional = false)
-    @JoinColumn(name = "Recorrido_ID", nullable = true)
-    private Recorrido recorrido;
-    
+@Entity(name = "unidadlinea")
+@Table(name = "unidadlinea")
+public class UnidadLinea implements Serializable{
+        
     // la carga perezosa genera un problema a l hoar de devolver el json, lo detecta como si no hubieran datos en ese campo
     @OneToOne(fetch = FetchType.EAGER)
 //    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Empresa_ID", nullable = false)
-//    @JsonIgnore
+    @JoinColumn(name = "empresa_id", nullable = false)
     private Empresa empresa;
     
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-//    @GeneratedValue(strategy=GenerationType.AUTO)
     @GeneratedValue
     private Long id;
     
     @Column(name = "nombre")
     private String nombre;
+    
+    @Column(name = "recorridoida", nullable = true)
+    private LineString recorridoIda;
+    
+    @Column(name = "recorridovuelta", nullable = true)
+    private LineString recorridoVuelta;
     
     @Column(name = "horainicio")
     @Convert(converter = ConverterTime.class)
@@ -76,20 +66,19 @@ public class UnidadTransporte implements Serializable{
     @Column(name = "precioboleto")
     private float precioBoleto;
     
-    public UnidadTransporte(){        
+    public UnidadLinea(){        
     }
     
-    public UnidadTransporte(String nombre, LocalTime horaInicio, LocalTime horaFin, int frecuenacia, float precioBoleto, Empresa empresa){
+    public UnidadLinea(String nombre, LocalTime horaInicio, LocalTime horaFin, int frecuenacia, float precioBoleto, Empresa empresa){
         this.nombre = nombre;
         this.empresa = empresa;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
         this.frecuencia = frecuenacia;
         this.precioBoleto = precioBoleto;
-        // se p
     }
     
-    public UnidadTransporte(long id, String nombre, LocalTime horaInicio, LocalTime horaFin, int frecuenacia, float precioBoleto, Empresa empresa){
+    public UnidadLinea(long id, String nombre, LocalTime horaInicio, LocalTime horaFin, int frecuenacia, float precioBoleto, Empresa empresa){
         this.id = id;
         this.nombre = nombre;
         this.empresa = empresa;
@@ -97,7 +86,6 @@ public class UnidadTransporte implements Serializable{
         this.horaFin = horaFin;
         this.frecuencia = frecuenacia;
         this.precioBoleto = precioBoleto;
-        // se p
     }
 
     public Long getId() {
@@ -112,14 +100,22 @@ public class UnidadTransporte implements Serializable{
         this.nombre = nombre;
     }
 
-    public Recorrido getRecorrido() {
-        return recorrido;
+    public LineString getRecorridoIda() {
+        return recorridoIda;
     }
 
-    public void setRecorrido(Recorrido recorrido) {
-        this.recorrido = recorrido;
+    public void setRecorridoIda(LineString recorridoIda) {
+        this.recorridoIda = recorridoIda;
     }
 
+    public LineString getRecorridoVuelta() {
+        return recorridoVuelta;
+    }
+
+    public void setRecorridoVuelta(LineString recorridoVuelta) {
+        this.recorridoVuelta = recorridoVuelta;
+    }
+        
     public LocalTime getHoraInicio() {
         return horaInicio;
     }
@@ -164,6 +160,6 @@ public class UnidadTransporte implements Serializable{
     public String toString() {
         return nombre + "\n horaInicio=" + horaInicio + "\n horaFin=" + horaFin + "\n frecuencia=" + frecuencia + "\n precioBoleto=" + precioBoleto;
     }
-    
+
     
 }

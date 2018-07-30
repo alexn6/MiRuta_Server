@@ -5,7 +5,7 @@
  */
 package com.alex.miruta2018.repo.crud;
 
-import com.alex.miruta2018.model.UnidadTransporte;
+import com.alex.miruta2018.model.UnidadLinea;
 import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
@@ -13,6 +13,8 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author alextc6
  */
-public interface RepositorioUnidadTransporte extends CrudRepository<UnidadTransporte, Long>{
-    Optional<UnidadTransporte> findByNombre(String nombre);
+public interface RepositorioUnidadLineaCrud extends CrudRepository<UnidadLinea, Long>{
+    
+    Optional<UnidadLinea> findByNombre(String nombre);
+    
 }

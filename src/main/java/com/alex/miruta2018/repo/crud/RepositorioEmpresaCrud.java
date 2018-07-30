@@ -5,7 +5,9 @@
  */
 package com.alex.miruta2018.repo.crud;
 
-import com.alex.miruta2018.model.PuntoInteres;
+import com.alex.miruta2018.model.Empresa;
+import com.alex.miruta2018.model.Parada;
+import java.io.Serializable;
 import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
@@ -13,6 +15,6 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author alextc6
  */
-public interface RepositorioPtoInteres extends CrudRepository<PuntoInteres, Long>{
-    Optional<PuntoInteres> findByNombre(String nombre);
+public interface RepositorioEmpresaCrud extends CrudRepository<Empresa, Long>{
+    Optional<Parada> findByNombre(String nombre);
 }

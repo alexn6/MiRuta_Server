@@ -5,12 +5,12 @@
  */
 package com.alex.miruta2018.services;
 
-import com.alex.miruta2018.repo.crud.RepositorioEmpresa;
 import com.alex.miruta2018.model.Empresa;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.alex.miruta2018.repo.crud.RepositorioEmpresaCrud;
 
 /**
  *
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class EmpresaService {
     
     @Autowired
-    private RepositorioEmpresa repoEmpresa;
+    private RepositorioEmpresaCrud repoEmpresa;
     
     public Empresa getById(long id){
         return repoEmpresa.findById(id).get();

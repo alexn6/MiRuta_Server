@@ -5,8 +5,7 @@
  */
 package com.alex.miruta2018.repo.queries;
 
-import com.alex.miruta2018.model.UnidadTransporte;
-import java.io.Serializable;
+import com.alex.miruta2018.model.UnidadLinea;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,10 +14,11 @@ import org.springframework.data.jpa.repository.Query;
  *
  * @author alextc6
  */
-public interface RepositorioUnidadTransporteJpa extends JpaRepository<UnidadTransporte, Long>{
+public interface RepositorioUnidadLineaJpa extends JpaRepository<UnidadLinea, Long>{
     
-    @Query("select nombre from unidadtransporte")
+    @Query("select nombre from unidadlinea")
     List<String> findAllNames();
     
-    UnidadTransporte findByNombre(String nombre);
+    UnidadLinea findByNombre(String nombre);
+    
 }

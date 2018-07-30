@@ -5,9 +5,6 @@
  */
 package com.alex.miruta2018.services.support;
 
-import com.alex.miruta2018.repo.crud.RepositorioComun;
-import com.alex.miruta2018.repo.crud.RepositorioEsquina;
-import com.alex.miruta2018.repo.crud.RepositorioParada;
 import com.alex.miruta2018.model.Comun;
 import com.alex.miruta2018.model.Esquina;
 import com.alex.miruta2018.model.Parada;
@@ -19,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import org.postgis.Point;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.alex.miruta2018.repo.crud.RepositorioComunCrud;
+import com.alex.miruta2018.repo.crud.RepositorioEsquinaCrud;
+import com.alex.miruta2018.repo.crud.RepositorioParadaCrud;
 
 /**
  *

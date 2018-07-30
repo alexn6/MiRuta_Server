@@ -5,8 +5,6 @@
  */
 package com.alex.miruta2018.test.model;
 
-import com.alex.miruta2018.repo.crud.RepositorioRecorrido;
-import com.alex.miruta2018.repo.crud.RepositorioUnidadTransporte;
 import com.alex.miruta2018.model.Recorrido;
 import com.alex.miruta2018.model.UnidadTransporte;
 import com.alex.miruta2018.test.config.ConfigTest;
@@ -21,6 +19,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import com.alex.miruta2018.repo.crud.RepositorioRecorridoCrud;
+import com.alex.miruta2018.repo.crud.RepositorioUnidadTransporteCrud;
 
 /**
  *
@@ -57,7 +57,7 @@ public class UnidadTransporteTest {
     @Component
     static class TestController{
         @Autowired
-        private RepositorioUnidadTransporte repo;
+        private RepositorioUnidadTransporteCrud repo;
 
         /**
          * @return

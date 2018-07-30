@@ -5,7 +5,6 @@
  */
 package com.alex.miruta2018.test.model;
 
-import com.alex.miruta2018.repo.crud.RepositorioComun;
 import com.alex.miruta2018.model.Comun;
 import com.alex.miruta2018.test.config.ConfigTest;
 import com.alex.miruta2018.test.model.ComunTest.TestController;
@@ -19,6 +18,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import com.alex.miruta2018.repo.crud.RepositorioComunCrud;
 
 /**
  *
@@ -60,7 +60,7 @@ public class ComunTest {
     @Component
     static class TestController{
         @Autowired
-        private RepositorioComun repo;
+        private RepositorioComunCrud repo;
 
         /**
          * @return

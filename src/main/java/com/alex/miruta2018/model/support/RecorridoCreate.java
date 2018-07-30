@@ -15,16 +15,22 @@ public class RecorridoCreate {
     
     private String color;
     private List<PuntoRecorridoGen> puntos;
-    private long idUnidadTransporte;
+    private String nombreUnidadTransporte;
+//    private long idUnidadTransporte;
     
     public RecorridoCreate(){
     }
     
-    public RecorridoCreate(String color, List<PuntoRecorridoGen> puntos, long idUnidad){
+    public RecorridoCreate(String color, List<PuntoRecorridoGen> puntos, String nombreUnidad){
         this.color = color;
         this.puntos = puntos;
-        this.idUnidadTransporte = idUnidad;
+        this.nombreUnidadTransporte = nombreUnidad;
     }
+//    public RecorridoCreate(String color, List<PuntoRecorridoGen> puntos, long idUnidad){
+//        this.color = color;
+//        this.puntos = puntos;
+//        this.idUnidadTransporte = idUnidad;
+//    }
 
     public String getColor() {
         return color;
@@ -42,12 +48,12 @@ public class RecorridoCreate {
         this.puntos = puntos;
     }
 
-    public long getIdUnidadTransporte() {
-        return idUnidadTransporte;
+    public String getNombreUnidadTransporte() {
+        return nombreUnidadTransporte;
     }
 
-    public void setIdUnidadTransporte(long idUnidadTransporte) {
-        this.idUnidadTransporte = idUnidadTransporte;
+    public void setNombreUnidadTransporte(String nombreUnidadTransporte) {
+        this.nombreUnidadTransporte = nombreUnidadTransporte;
     }
     
 }

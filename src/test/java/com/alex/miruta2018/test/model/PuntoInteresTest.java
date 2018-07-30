@@ -5,7 +5,6 @@
  */
 package com.alex.miruta2018.test.model;
 
-import com.alex.miruta2018.repo.crud.RepositorioPtoInteres;
 import com.alex.miruta2018.model.PuntoInteres;
 import com.alex.miruta2018.test.config.ConfigTest;
 import com.alex.miruta2018.test.model.PuntoInteresTest.TestController;
@@ -19,6 +18,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import com.alex.miruta2018.repo.crud.RepositorioPtoInteresCrud;
 
 /**
  *
@@ -57,7 +57,7 @@ public class PuntoInteresTest {
     @Component
     static class TestController{
         @Autowired
-        private RepositorioPtoInteres repo;
+        private RepositorioPtoInteresCrud repo;
 
         /**
          * @return

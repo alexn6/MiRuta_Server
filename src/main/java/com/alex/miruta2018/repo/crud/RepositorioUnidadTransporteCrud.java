@@ -5,8 +5,7 @@
  */
 package com.alex.miruta2018.repo.crud;
 
-import com.alex.miruta2018.model.Parada;
-import com.alex.miruta2018.model.PuntoRecorrido;
+import com.alex.miruta2018.model.UnidadTransporte;
 import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
@@ -14,6 +13,6 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author alextc6
  */
-public interface RepositorioPtoRecorrido extends CrudRepository<PuntoRecorrido, Long>{
-    Optional<PuntoRecorrido> findByDescripcion(String descripcion);
+public interface RepositorioUnidadTransporteCrud extends CrudRepository<UnidadTransporte, Long>{
+    Optional<UnidadTransporte> findByNombre(String nombre);
 }

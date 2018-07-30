@@ -5,7 +5,6 @@
  */
 package com.alex.miruta2018.services;
 
-import com.alex.miruta2018.repo.crud.RepositorioPtoInteres;
 import com.alex.miruta2018.repo.crud.RepositorioUsuarioCrud;
 import com.alex.miruta2018.model.PuntoInteres;
 import com.alex.miruta2018.model.Usuario;
@@ -16,6 +15,7 @@ import java.util.List;
 import org.postgis.Point;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.alex.miruta2018.repo.crud.RepositorioPtoInteresCrud;
 
 /**
  *
@@ -25,7 +25,7 @@ import org.springframework.stereotype.Service;
 public class PtoInteresService {
     
     @Autowired
-    private RepositorioPtoInteres repoCrudPtoInteres;
+    private RepositorioPtoInteresCrud repoCrudPtoInteres;
     
     @Autowired
     private RepositorioUsuarioCrud repoCrudUsuario;

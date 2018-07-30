@@ -5,7 +5,6 @@
  */
 package com.alex.miruta2018.services;
 
-import com.alex.miruta2018.repo.crud.RepositorioComun;
 import com.alex.miruta2018.model.Comun;
 import com.alex.miruta2018.model.support.PuntoRecorridoCreate;
 import com.alex.miruta2018.model.support.PuntoRecorridoUpdate;
@@ -15,6 +14,7 @@ import java.util.List;
 import org.postgis.Point;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.alex.miruta2018.repo.crud.RepositorioComunCrud;
 
 /**
  *
@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
 public class ComunService {
     
     @Autowired
-    private RepositorioComun repoComun;
+    private RepositorioComunCrud repoComun;
     @Autowired
     private RepositorioUnidadTransporteJpa repo;
     

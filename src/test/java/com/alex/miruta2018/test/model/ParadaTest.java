@@ -5,7 +5,6 @@
  */
 package com.alex.miruta2018.test.model;
 
-import com.alex.miruta2018.repo.crud.RepositorioParada;
 import com.alex.miruta2018.model.Parada;
 import com.alex.miruta2018.test.config.ConfigTest;
 import com.alex.miruta2018.test.model.ParadaTest.TestController;
@@ -19,6 +18,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import com.alex.miruta2018.repo.crud.RepositorioParadaCrud;
 
 /**
  *
@@ -62,7 +62,7 @@ public class ParadaTest {
     @Component
     static class TestController{
         @Autowired
-        private RepositorioParada repo;
+        private RepositorioParadaCrud repo;
 
         /**
          * @return

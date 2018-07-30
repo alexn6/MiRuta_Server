@@ -12,16 +12,10 @@ import com.alex.miruta2018.model.Parada;
 import com.alex.miruta2018.model.PuntoInteres;
 import com.alex.miruta2018.model.PuntoRecorrido;
 import com.alex.miruta2018.model.Recorrido;
+import com.alex.miruta2018.model.UnidadLinea;
 import com.alex.miruta2018.model.UnidadTransporte;
 import com.alex.miruta2018.repo.crud.RepositorioUsuarioCrud;
 import com.alex.miruta2018.model.Usuario;
-import com.alex.miruta2018.repo.crud.RepositorioComun;
-import com.alex.miruta2018.repo.crud.RepositorioEmpresa;
-import com.alex.miruta2018.repo.crud.RepositorioEsquina;
-import com.alex.miruta2018.repo.crud.RepositorioParada;
-import com.alex.miruta2018.repo.crud.RepositorioPtoInteres;
-import com.alex.miruta2018.repo.crud.RepositorioRecorrido;
-import com.alex.miruta2018.repo.crud.RepositorioUnidadTransporte;
 import com.alex.miruta2018.repo.queries.RepositorioUsuarioJpa;
 import com.alex.miruta2018.services.ConsumeServiceWeb;
 import com.alex.miruta2018.services.EmpresaService;
@@ -42,6 +36,14 @@ import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConf
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import com.alex.miruta2018.repo.crud.RepositorioComunCrud;
+import com.alex.miruta2018.repo.crud.RepositorioEmpresaCrud;
+import com.alex.miruta2018.repo.crud.RepositorioEsquinaCrud;
+import com.alex.miruta2018.repo.crud.RepositorioParadaCrud;
+import com.alex.miruta2018.repo.crud.RepositorioPtoInteresCrud;
+import com.alex.miruta2018.repo.crud.RepositorioRecorridoCrud;
+import com.alex.miruta2018.repo.crud.RepositorioUnidadLineaCrud;
+import com.alex.miruta2018.repo.crud.RepositorioUnidadTransporteCrud;
 
 /**
  *
@@ -112,7 +114,7 @@ public class Application {
 //    ####################################################################################
 //    ############################ Unidad de transportes #################################
     @Bean
-    public CommandLineRunner cargaInicialUnidadTransporte(RepositorioUnidadTransporte repoUniTransporte, RepositorioEmpresa repoEmpresa) {
+    public CommandLineRunner cargaInicialUnidadTransporte(RepositorioUnidadTransporteCrud repoUniTransporte, RepositorioEmpresaCrud repoEmpresa) {
         return (args) -> {
 //            UnidadTransporte unidad;
 //            unidad = new UnidadTransporte("Unidad1", LocalTime.of(8, 0), LocalTime.of(22, 0), 20, 9.50f, repoEmpresa.findById(3L).get());
@@ -130,10 +132,29 @@ public class Application {
         };
     }
     
+    @Bean
+    public CommandLineRunner cargaInicialUnidadLinea(RepositorioUnidadLineaCrud repoUniLinea, RepositorioEmpresaCrud repoEmpresa) {
+        return (args) -> {
+//            UnidadLinea unidad;
+//            unidad = new UnidadLinea("Linea1", LocalTime.of(8, 0), LocalTime.of(22, 0), 20, 9.50f, repoEmpresa.findById(3L).get());
+//            repoUniLinea.save(unidad);
+//            
+//            unidad = new UnidadLinea("Linea2", LocalTime.of(7, 30), LocalTime.of(22, 15), 15, 11.00f, repoEmpresa.findById(4L).get());
+//            repoUniLinea.save(unidad);
+//
+//            // buscamos todas las paradas a modo de prueba
+//            log.info("**** Unidades de transporte guardadas: ****");
+//            for (UnidadLinea unidadT : repoUniLinea.findAll()) {
+//                log.info(unidadT.toString());
+//            }
+//            log.info("*********************************************");
+        };
+    }
+    
 //    ####################################################################################
 //    ################################### PuntoInteres ###################################
     @Bean
-    public CommandLineRunner cargaInicialPtoInteres(RepositorioPtoInteres repoPtoInteres, RepositorioUsuarioCrud repoUsuario) {
+    public CommandLineRunner cargaInicialPtoInteres(RepositorioPtoInteresCrud repoPtoInteres, RepositorioUsuarioCrud repoUsuario) {
         return (args) -> {
 //            PuntoInteres ptoInt;
 //            // guardamos algunos puntos
@@ -157,7 +178,7 @@ public class Application {
     // anotacion para indicar que se ejecute este procedimiento
     // CommandLineRunner: para correr algún código específico al arranque de la aplicación con Spring Boot
     @Bean
-    public CommandLineRunner cargaInicialParada(RepositorioParada repositorio) {
+    public CommandLineRunner cargaInicialParada(RepositorioParadaCrud repositorio) {
         return (args) -> {
 //            Parada p;
 //            // guardamos algunas paradas
@@ -179,7 +200,7 @@ public class Application {
 //    ####################################################################################
 //    ##################################### Esquina y comun ######################################
     @Bean
-    public CommandLineRunner cargaInicialEsquinaComun(RepositorioEsquina repoEsquina, RepositorioComun repoComun) {
+    public CommandLineRunner cargaInicialEsquinaComun(RepositorioEsquinaCrud repoEsquina, RepositorioComunCrud repoComun) {
         return (args) -> {
 //            Esquina puntoEsq;
 //            Comun puntoComun;
@@ -210,9 +231,9 @@ public class Application {
 //    ######################################################################################
 //    ##################################### Recorrido ######################################
     @Bean
-    public CommandLineRunner cargaInicialRecorrido(RepositorioRecorrido repoRecorrido, RepositorioEsquina repoEsquina,
-                                        RepositorioParada repoParada, RepositorioUnidadTransporte repoUniTRansporte,
-                                        RepositorioComun repoComun) {
+    public CommandLineRunner cargaInicialRecorrido(RepositorioRecorridoCrud repoRecorrido, RepositorioEsquinaCrud repoEsquina,
+                                        RepositorioParadaCrud repoParada, RepositorioUnidadTransporteCrud repoUniTRansporte,
+                                        RepositorioComunCrud repoComun) {
         return (args) -> {
 //            Recorrido reco;
 //            PuntoRecorrido ptoRecorrido;

@@ -6,30 +6,29 @@
 package com.alex.miruta2018.services;
 
 import com.alex.miruta2018.model.Empresa;
-import com.alex.miruta2018.model.UnidadTransporte;
+import com.alex.miruta2018.model.UnidadLinea;
 import com.alex.miruta2018.model.support.UnidadTransporteCreate;
 import com.alex.miruta2018.model.support.UnidadTransporteUpdate;
-import com.alex.miruta2018.repo.queries.RepositorioUnidadTransporteJpa;
+import com.alex.miruta2018.repo.crud.RepositorioEmpresaCrud;
+import com.alex.miruta2018.repo.crud.RepositorioUnidadLineaCrud;
+import com.alex.miruta2018.repo.queries.RepositorioUnidadLineaJpa;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.alex.miruta2018.repo.crud.RepositorioEmpresaCrud;
-import com.alex.miruta2018.repo.crud.RepositorioUnidadTransporteCrud;
 
 /**
  *
  * @author alextc6
  */
 @Service
-public class UnidadTransporteService {
+public class UnidadLineaService {
     
     @Autowired
-    private RepositorioUnidadTransporteCrud repoUniTransporte;
+    private RepositorioUnidadLineaCrud repoUniLinea;
     @Autowired
-    private RepositorioUnidadTransporteJpa repoUniTransporteQueries;
-    
+    private RepositorioUnidadLineaJpa repoUniTransporteQueries;
     @Autowired
     private RepositorioEmpresaCrud repoEmpresa;
     
@@ -37,27 +36,27 @@ public class UnidadTransporteService {
     // ************************************ ABMC ************************************
     // ******************************************************************************
     
-    public UnidadTransporte getById(long id){
-        return repoUniTransporte.findById(id).get();
+    public UnidadLinea getById(long id){
+        return repoUniLinea.findById(id).get();
     }
     
-    public List<UnidadTransporte> getAll(){
-        Iterable<UnidadTransporte> unidades = repoUniTransporte.findAll();
-        List<UnidadTransporte> list = new ArrayList<>();
+    public List<UnidadLinea> getAll(){
+        Iterable<UnidadLinea> unidades = repoUniLinea.findAll();
+        List<UnidadLinea> list = new ArrayList<>();
         unidades.forEach(list::add);
         return list;
     }
     
-    public UnidadTransporte create(UnidadTransporteCreate unidad){
+    public UnidadLinea create(UnidadTransporteCreate unidad){
         Empresa emp = repoEmpresa.findById(unidad.getIdEmpresa()).get();
-        UnidadTransporte nuevaUnidad = new UnidadTransporte(unidad.getNombre(), LocalTime.of(unidad.getHoraInicio(), unidad.getMinInicio()), LocalTime.of(unidad.getHoraFin(), unidad.getMinFin()), unidad.getFrecuencia(), unidad.getPrecioBoleto(), emp);
+        UnidadLinea nuevaUnidad = new UnidadLinea(unidad.getNombre(), LocalTime.of(unidad.getHoraInicio(), unidad.getMinInicio()), LocalTime.of(unidad.getHoraFin(), unidad.getMinFin()), unidad.getFrecuencia(), unidad.getPrecioBoleto(), emp);
         System.out.println("idUniTransporte creado: "+nuevaUnidad.getId());
-        return repoUniTransporte.save(nuevaUnidad);
+        return repoUniLinea.save(nuevaUnidad);
     }
     
-    public UnidadTransporte update(UnidadTransporteUpdate unidad){
+    public UnidadLinea update(UnidadTransporteUpdate unidad){
         // asegurar desde el cliente que estos campos correspondan siempre a datos existentes
-        UnidadTransporte unidadDB = repoUniTransporte.findById(unidad.getId()).get();
+        UnidadLinea unidadDB = repoUniLinea.findById(unidad.getId()).get();
         Empresa emp = repoEmpresa.findById(unidad.getIdEmpresa()).get();
         
         unidadDB.setNombre(unidad.getNombre());
@@ -67,12 +66,12 @@ public class UnidadTransporteService {
         unidadDB.setPrecioBoleto(unidad.getPrecioBoleto());
         unidadDB.setEmpresa(emp);
         
-        return repoUniTransporte.save(unidadDB);
+        return repoUniLinea.save(unidadDB);
     }
     
     // ver si mandar algun mje cuando se elimina correctamente
     public void delete(Long id){
-        repoUniTransporte.deleteById(id);
+        repoUniLinea.deleteById(id);
     }
     
     
@@ -82,4 +81,5 @@ public class UnidadTransporteService {
     public List<String> getAllNames(){
         return repoUniTransporteQueries.findAllNames();
     }
+    
 }

@@ -5,7 +5,7 @@
  */
 package com.alex.miruta2018.repo.crud;
 
-import com.alex.miruta2018.model.Parada;
+import com.alex.miruta2018.model.Comun;
 import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
@@ -13,6 +13,8 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author alextc6
  */
-public interface RepositorioParada extends CrudRepository<Parada, Long>{
-    Optional<Parada> findByDescripcion(String descripcion);
+public interface RepositorioComunCrud extends CrudRepository<Comun, Long>{
+    
+    Optional<Comun> findByDescripcion(String descripcion);
+    
 }

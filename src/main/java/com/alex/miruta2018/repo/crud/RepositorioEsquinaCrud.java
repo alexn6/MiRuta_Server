@@ -5,8 +5,7 @@
  */
 package com.alex.miruta2018.repo.crud;
 
-import com.alex.miruta2018.model.Parada;
-import com.alex.miruta2018.model.Recorrido;
+import com.alex.miruta2018.model.Esquina;
 import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
@@ -14,6 +13,8 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author alextc6
  */
-public interface RepositorioRecorrido extends CrudRepository<Recorrido, Long>{
-    Optional<Recorrido> findByColor(String color);
+public interface RepositorioEsquinaCrud extends CrudRepository<Esquina, Long> {
+    
+    Optional<Esquina> findByDescripcion(String descripcion);
+    
 }

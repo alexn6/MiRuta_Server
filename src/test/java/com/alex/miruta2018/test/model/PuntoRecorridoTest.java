@@ -5,7 +5,6 @@
  */
 package com.alex.miruta2018.test.model;
 
-import com.alex.miruta2018.repo.crud.RepositorioPtoRecorrido;
 import com.alex.miruta2018.model.PuntoRecorrido;
 import com.alex.miruta2018.test.config.ConfigTest;
 import com.alex.miruta2018.test.model.PuntoRecorridoTest.TestController;
@@ -19,6 +18,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import com.alex.miruta2018.repo.crud.RepositorioPtoRecorridoCrud;
 
 /**
  *
@@ -61,7 +61,7 @@ public class PuntoRecorridoTest {
     @Component
     static class TestController{
         @Autowired
-        private RepositorioPtoRecorrido repo;
+        private RepositorioPtoRecorridoCrud repo;
 
         /**
          * @return

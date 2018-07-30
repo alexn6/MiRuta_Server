@@ -5,8 +5,6 @@
  */
 package com.alex.miruta2018.services;
 
-import com.alex.miruta2018.repo.crud.RepositorioRecorrido;
-import com.alex.miruta2018.repo.crud.RepositorioUnidadTransporte;
 import com.alex.miruta2018.model.PuntoRecorrido;
 import com.alex.miruta2018.model.Recorrido;
 import com.alex.miruta2018.model.UnidadTransporte;
@@ -17,6 +15,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.alex.miruta2018.repo.crud.RepositorioRecorridoCrud;
+import com.alex.miruta2018.repo.crud.RepositorioUnidadTransporteCrud;
 
 /**
  *
@@ -26,9 +26,9 @@ import org.springframework.stereotype.Service;
 public class RecorridoService {
     
     @Autowired
-    private RepositorioRecorrido repoRecorrido;
+    private RepositorioRecorridoCrud repoRecorrido;
     @Autowired
-    private RepositorioUnidadTransporte repoUniTransporte;
+    private RepositorioUnidadTransporteCrud repoUniTransporte;
     
     public Recorrido getById(long id){
         return repoRecorrido.findById(id).get();
@@ -38,16 +38,27 @@ public class RecorridoService {
         Iterable<Recorrido> recorridos = repoRecorrido.findAll();
         List<Recorrido> list = new ArrayList<Recorrido>();
         recorridos.forEach(list::add);
+        // imprimir los datos recuperados
+        System.out.println("############ TEST ALL RECORRIDOS ###########");
+        for (Recorrido recorrido : list) {
+            System.out.println(recorrido.getColor());
+            System.out.println(recorrido.getNombre());
+            System.out.println(recorrido.getpuntos().size());
+            System.out.println(recorrido.getUnidad().getId());
+        }
+        System.out.println("###########################################");
         return list;
     }
     
     public Recorrido create(RecorridoCreate recorrido) throws NoSuchElementException{
         List<PuntoRecorrido> puntos = RecorridoGenericoService.getPuntosRecorrido(recorrido.getPuntos());
         
-        UnidadTransporte unidad = repoUniTransporte.findById(recorrido.getIdUnidadTransporte()).get();
+        UnidadTransporte unidad = repoUniTransporte.findByNombre(recorrido.getNombreUnidadTransporte()).get();
+//        UnidadTransporte unidad = repoUniTransporte.findById(recorrido.getIdUnidadTransporte()).get();
+        System.out.println("RecorridoService ---> unidad: "+unidad.toString());
         Recorrido nuevoRecorrido = new Recorrido(recorrido.getColor(), puntos, unidad);
-
-        return nuevoRecorrido;
+        
+        return repoRecorrido.save(nuevoRecorrido);
     }
     
 //    public Recorrido update(RecorridoCreate comun){
